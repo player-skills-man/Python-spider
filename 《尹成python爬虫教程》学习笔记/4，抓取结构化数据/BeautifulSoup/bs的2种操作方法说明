@@ -1,0 +1,3 @@
+bs 抽取数据有两种方式：
+1，使用函数:find_all(),find()等
+2,直接使用CSS选择器selector。 soup.select('selector path')

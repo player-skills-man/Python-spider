@@ -1,0 +1,23 @@
+    # 非阻塞
+    g1 = gevent.spawn(show_wait, "小明", 3)
+    g2 = gevent.spawn(show_wait, "小红", 3)
+    g3 = gevent.spawn(show_wait, "小刚", 3)
+    g1.join()
+    g2.join()
+    g3.join()
+
+    #阻塞
+    g1 = gevent.spawn(show_wait, "小明", 3).join()
+    g2 = gevent.spawn(show_wait, "小红", 3).join()
+    g3 = gevent.spawn(show_wait, "小刚", 3).join()
+
+    协程的创建和join要分开，否则就是阻塞模式。
+
+要想实现非阻塞的条件：
+1，协程自动调度[gevent.monkey.patch_all()或等待时使用gevent.sleep(random)]
+2，协程的创建和join(分配)要分开，方法例如：
+    gevents = []
+    for pages in pages_lists:# 协程创建
+        gevents.append(gevent.spawn(func,str))
+    for g in gevents:# 协程join（分配）
+        g.join()

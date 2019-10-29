@@ -1,0 +1,17 @@
+《突破反爬虫》
+
+一，大部分网站的反爬虫措施可以分为以下4类：
+1，基于验证码的反爬虫
+2，基于Headers的反爬虫
+3，基于用户行为的反爬虫
+4，基于动态页面的反爬虫
+
+
+二，突破方法
+1，user-agent代理池
+2，禁用cookies
+3,设置下载延时与自动限速
+4，代理IP池
+5，Tor代理
+6，分布式下载器：Crawlera Scrapy官方提供的付费服务
+7，Google cache 访问Google cache的方式为：http://webcache.googleusercontent.com/search?q=cache:自己要访问的url

@@ -1,0 +1,25 @@
+1,应用itemloader 爬取CSDN讲师列表。
+itemloader:
+    一个强大的工具类——ItemLoader，以替代那些杂乱的extract()和xpath()操作
+
+2,MapCompose处理器：
+
+
+你可能产生的另一个感觉是所有的处理器以及ItemLoader并不值
+得去努力。如果你是一个经验丰富的Python开发者，可能会觉得有些不
+舒服，因为你必须去学习新的类，来实现通常使用字符串操作、lambda
+表达式以及列表推导式就可以完成的操作。不过，这只是ItemLoader
+及其功能的简要概述。如果你更加深入地了解它，就不会再回头
+了。ItemLoader和处理器是基于编写并支持了成千上万个爬虫的人们
+的抓取需求而开发的工具包。如果你准备开发多个爬虫的话，就非常值
+得去学习使用它们。
+
+3,CSDN的爬虫检测和反爬虫很牛逼。
+
+4,正则表达式，要注意注意字符\的使用。
+错误：lecturer?page=\d+
+正确：lecturer\?page=\d+
+
+5,LinkExtractor(allow=(r'/lecturer/\d+'), unique=True)
+这里的unique参数，只是对一个页面提取的url的唯一性检查，而无关爬虫的url去重。
+所以，url的去重工作需要自己做。

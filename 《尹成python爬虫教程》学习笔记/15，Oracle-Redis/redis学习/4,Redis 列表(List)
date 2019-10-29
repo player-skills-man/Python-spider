@@ -1,0 +1,68 @@
+Redis列表是简单的字符串列表，按照插入顺序排序。你可以添加一个元素到列表的头部（左边）或者尾部（右边）
+一个列表最多可以包含 1<<32 - 1  个元素 (4294967295, 每个列表超过40亿个元素)。[1<<32 == 2的32次方]
+列表是简单的字符串列表！
+列表是简单的字符串列表！
+列表是简单的字符串列表！
+
+
+1，添加
+LPUSH key value1 [value2]
+将一个或多个值插入到列表头部。如果 key 不存在，一个空列表会被创建并执行 LPUSH 操作。 当 key 存在但不是列表类型时，返回一个错误。
+RPUSH key value1 [value2]
+在列表中添加一个或多个值。Rpush 命令用于将一个或多个值插入到列表的尾部(最右边)。
+
+LPUSHX key value
+将一个值插入到已存在的列表头部。Lpushx 将一个值插入到已存在的列表头部，列表不存在时操作无效。
+RPUSHX key value
+为已存在的列表添加值
+
+LSET key index value
+通过索引设置列表元素的值
+LINSERT key BEFORE|AFTER pivot value
+在列表的元素前或者后插入元素
+redis> LINSERT mylist BEFORE "World" "There"
+(integer) 3
+
+
+
+2,查找
+LLEN key
+获取列表长度
+
+LINDEX key index
+通过索引获取列表中的元素
+
+LRANGE key start stop
+获取列表指定范围内的元素
+
+
+
+3，删除
+LPOP key
+移出并获取列表的第一个元素
+RPOP key
+移除列表的最后一个元素，返回值为移除的元素。
+
+LREM key count value
+移除列表元素
+
+BRPOPLPUSH source destination timeout
+从列表中弹出一个值，将弹出的元素插入到另外一个列表中并返回它； 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。
+RPOPLPUSH source destination
+移除列表的最后一个元素，并将该元素添加到另一个列表并返回
+
+BLPOP key1 [key2 ] timeout
+移出并获取列表的第一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。
+如果列表为空，返回一个 nil 。 否则，返回一个含有两个元素的列表，第一个元素是被弹出元素所属的 key ，第二个元素是被弹出元素的值。
+redis 127.0.0.1:6379> BLPOP list1 100
+在以上实例中，操作会被阻塞，如果指定的列表 key list1 存在数据则会返回第一个元素，否则在等待100秒后会返回 nil 。
+(nil)
+BRPOP key1 [key2 ] timeout
+移出并获取列表的最后一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。
+
+
+
+4，修改
+LTRIM key start stop
+对一个列表进行修剪(trim)，就是说，让列表只保留指定区间内的元素，不在指定区间之内的元素都将被删除。
+

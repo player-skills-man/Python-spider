@@ -1,0 +1,95 @@
+调试内存溢出
+在Scrapy中，类似Requests, Response及Items的对象具有有限的生命周期: 他们被创建，使用，最后被销毁。
+这些对象中，Request的生命周期应该是最长的，其会在调度队列(Scheduler queue)中一直等待，直到被处理。
+由于这些Scrapy对象拥有很长的生命，因此将这些对象存储在内存而没有正确释放的危险总是存在。 而这导致了所谓的”内存泄露”。
+为了帮助调试内存泄露，Scrapy提供了跟踪对象引用的机制，叫做 trackref ，
+或者您也可以使用第三方提供的更先进内存调试库 Guppy (更多内容请查看下面)。
+而这都必须在 Telnet终端 中使用。!!!
+
+内存泄露经常是由于Scrapy开发者在Requests中(有意或无意)传递对象的引用(例如，使用 meta 属性或request回调函数)，使得该对象的生命周期与 Request的生命周期所绑定。这是目前为止最常见的内存泄露的原因， 同时对新手来说也是一个比较难调试的问题。
+在大项目中，spider是由不同的人所编写的。而这其中有的spider可能是有”泄露的”， 当所有的爬虫同时运行时，这些影响了其他(写好)的爬虫，最终，影响了整个爬取进程。
+与此同时，在不限制框架的功能的同时避免造成这些造成泄露的原因是十分困难的。因此， 我们决定不限制这些功能而是提供调试这些泄露的实用工具。这些工具回答了一个问题: 哪个spider在泄露 。
+内存泄露可能存在与一个您编写的中间件，管道(pipeline) 或扩展，在代码中您没有正确释放 (之前分配的)资源。例如，您在 spider_opened 中分配资源但在 spider_closed 中没有释放它们。
+
+
+使用 trackref 调试内存泄露
+trackref 是Scrapy提供用于调试大部分内存泄露情况的模块。 简单来说，其追踪了所有活动(live)的Request, Request, Item及Selector对象的引用。
+您可以进入telnet终端并通过 prefs() 功能来检查多少(上面所提到的)活跃(alive)对象。 pref() 是 print_live_refs() 功能的引用:
+telnet localhost 6023
+>>>username
+>>>password
+...
+>>> prefs()
+Live References
+ExampleSpider                       1   oldest: 15s ago
+HtmlResponse                       10   oldest: 1s ago
+Selector                            2   oldest: 0s ago
+FormRequest                       878   oldest: 7s ago
+
+如果您有内存泄露，那您能找到哪个spider正在泄露的机会是查看最老的request或response。 您可以使用 get_oldest() 方法来获取每个类中最老的对象。
+>>> from scrapy.utils.trackref import get_oldest
+>>> r = get_oldest('HtmlResponse')
+>>> r.url
+'http://www.somenastyspider.com/product.php?pid=123'
+就这样，通过查看最老的response的URL，我们发现其属于 somenastyspider.com spider。 现在我们可以查看该spider的代码并发现导致泄露的那行代码(在request中传递response的引用)。
+
+trackref 追踪的对象包括以下类(及其子类)的对象:
+scrapy.http.Request
+scrapy.http.Response
+scrapy.item.Item
+scrapy.selector.Selector
+scrapy.spider.Spider
+
+如果您的项目有很多的spider，prefs() 的输出会变得很难阅读。针对于此， 该方法具有 ignore 参数，用于忽略特定的类(及其子类)。例如:
+>>> from scrapy.spider import Spider
+>>> prefs(ignore=Spider)
+将不会展现任何spider的活跃引用。
+
+
+
+
+
+
+
+
+
+使用Guppy调试内存泄露
+trackref 提供了追踪内存泄露非常方便的机制，其仅仅追踪了比较可能导致内存泄露的对象 (Requests, Response, Items及Selectors)。然而，内存泄露也有可能来自其他(更为隐蔽的)对象。 如果是因为这个原因，通过 trackref 则无法找到泄露点，您仍然有其他工具: Guppy library 。
+
+如果使用 setuptools , 您可以通过下列命令安装Guppy:
+
+easy_install guppy
+telnet终端也提供了快捷方式(hpy)来访问Guppy堆对象(heap objects)。 下面给出了查看堆中所有可用的Python对象的例子:
+
+>>> x = hpy.heap()
+>>> x.bytype
+Partition of a set of 297033 objects. Total size = 52587824 bytes.
+ Index  Count   %     Size   % Cumulative  % Type
+     0  22307   8 16423880  31  16423880  31 dict
+     1 122285  41 12441544  24  28865424  55 str
+     2  68346  23  5966696  11  34832120  66 tuple
+     3    227   0  5836528  11  40668648  77 unicode
+     4   2461   1  2222272   4  42890920  82 type
+     5  16870   6  2024400   4  44915320  85 function
+     6  13949   5  1673880   3  46589200  89 types.CodeType
+     7  13422   5  1653104   3  48242304  92 list
+     8   3735   1  1173680   2  49415984  94 _sre.SRE_Pattern
+     9   1209   0   456936   1  49872920  95 scrapy.http.headers.Headers
+<1676 more rows. Type e.g. '_.more' to view.>
+您可以看到大部分的空间被字典所使用。接着，如果您想要查看哪些属性引用了这些字典， 您可以:
+
+>>> x.bytype[0].byvia
+Partition of a set of 22307 objects. Total size = 16423880 bytes.
+ Index  Count   %     Size   % Cumulative  % Referred Via:
+     0  10982  49  9416336  57   9416336  57 '.__dict__'
+     1   1820   8  2681504  16  12097840  74 '.__dict__', '.func_globals'
+     2   3097  14  1122904   7  13220744  80
+     3    990   4   277200   2  13497944  82 "['cookies']"
+     4    987   4   276360   2  13774304  84 "['cache']"
+     5    985   4   275800   2  14050104  86 "['meta']"
+     6    897   4   251160   2  14301264  87 '[2]'
+     7      1   0   196888   1  14498152  88 "['moduleDict']", "['modules']"
+     8    672   3   188160   1  14686312  89 "['cb_kwargs']"
+     9     27   0   155016   1  14841328  90 '[1]'
+<333 more rows. Type e.g. '_.more' to view.>
+如上所示，Guppy模块十分强大，不过也需要一些关于Python内部的知识。关于Guppy的更多内容请参考 Guppy documentation.

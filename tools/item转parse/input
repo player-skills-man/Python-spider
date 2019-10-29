@@ -1,0 +1,4 @@
+    book_name = scrapy.Field()  # 书名
+    author = scrapy.Field()  # 作者
+    price = scrapy.Field() # 价格
+    isbn = scrapy.Field() # isbn

@@ -1,0 +1,11 @@
+github:https://github.com/soimort/you-get
+
+使用文档：
+https://github.com/soimort/you-get/blob/develop/README.md
+https://github.com/soimort/you-get/wiki/中文说明
+
+
+
+cmd简单使用：
+you-get -o . https://www.bilibili.com/video/av42807302/?p=325
+you-get -o <目录> <链接> # 可以突破会员限制？？？

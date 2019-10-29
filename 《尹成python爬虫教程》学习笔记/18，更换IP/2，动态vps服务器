@@ -1,0 +1,5 @@
+adsl拨号
+# 拨号
+cmd$>rasdial 宽带连接 account password
+# 断开连接
+cmd$>rasdial 宽带连接 /disconnect

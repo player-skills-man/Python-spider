@@ -1,0 +1,14 @@
+当利用xpath取数据为空或者出错时，先检查xpath写的是否正确，如果xpath写的没问题，那就再看源代码是否与firepath一样。
+
+https://blog.csdn.net/baidu_32542573/article/details/79439014
+
+
+（1）和（2）经过对比可以看出：（2）中<a>标签少了，
+只有</a>，response.xpath('//div[@id="pic_con"]/div/img[@id="imgis"]/@src')
+这样写才正确，不能加上<a>标签。因为ID是唯一的，所以此问题只需response.xpath('//img[@id="imgis"]')即可。
+不能加上<a>标签
+不能加上<a>标签
+不能加上<a>标签
+不能加上<a>标签
+不能加上<a>标签
+不能加上<a>标签

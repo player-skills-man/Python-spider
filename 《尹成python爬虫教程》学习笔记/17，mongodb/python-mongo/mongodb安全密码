@@ -1,0 +1,17 @@
+首先打开mongod服务
+进入mongodb终端
+>use admin
+>db.createUser({"user":"yyl","pwd":"123456",roles:["root"]})
+Successfully added user: { "user" : "yyl", "roles" : [ "root" ] }
+
+重新启动mongod服务,并设置启动认证
+$mongod --auth
+这个时候就打开了auth权限验证。
+
+验证方法：
+1，登陆的时候验证
+$mongo 127.0.0.1:27017/admin -u yyl -p 123456
+
+2，再client验证
+>use admin
+>db.auth("yyl","123456")

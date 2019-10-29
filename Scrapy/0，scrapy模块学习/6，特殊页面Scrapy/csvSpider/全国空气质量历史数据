@@ -1,0 +1,9 @@
+http://beijingair.sinaapp.com/
+
+单日数据下载地址
+北京PM2.5/PM10/AQI数据 CSV格式	http://beijingair.sinaapp.com/data/beijing/all/[日期]/csv
+北京SO2/NO2/O3/CO数据 CSV格式	http://beijingair.sinaapp.com/data/beijing/extra/[日期]/csv
+全国城市数据 CSV格式	http://beijingair.sinaapp.com/data/china/cities/[日期]/csv
+全国国控监测点数据 CSV格式	http://beijingair.sinaapp.com/data/china/sites/[日期]/csv
+其中“[日期]”为8位数字表示的日期，例如2013/12/05的数据地址为
+http://beijingair.sinaapp.com/data/beijing/all/20131205/csv。

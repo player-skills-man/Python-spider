@@ -1,0 +1,6 @@
+scrapy crawl basic -o datas\\items.json
+scrapy crawl basic -o datas\\items.jl
+scrapy crawl basic -o datas\\items.csv
+scrapy crawl basic -o datas\\items.xml
+
+

@@ -1,0 +1,21 @@
+测试scrapy内置图片和文件下载方式:
+    FilesPipeline
+    ImagesPipeline
+
+
+使用方法，见截图
+settings.py文件修改----因为是用的scrapy的内置类，所以注意变量名字要一直。
+ITEM_PIPELINES = {
+    'ImageSpider.pipelines.ImagespiderPipeline': 300,
+    'scrapy.pipelines.images.ImagesPipeline': 1, # 使用scrapy内置自带的Pipeline
+
+}
+IMAGES_STORE = r"D:\\imgs" # 下载路径
+IMAGES_URLS_FIELD = "img_urls" # 文件url所在的item字段
+IMAGES_RESULT_FIELD = "images" # 文件url所在的item字段IMG_URLS_FIELD
+
+IMG_THUMBS = {
+    'small':(50,70),
+    'big':(270,270)
+}# 制作缩略图，并设置尺寸大小
+IMG_EXPIRES = 30 # 设置文过期时间30天

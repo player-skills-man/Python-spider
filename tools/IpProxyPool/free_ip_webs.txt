@@ -1,0 +1,22 @@
+#2019-10-04,yyl免费代理网站总结:
+"https://www.xicidaili.com/nn/", # xici代理
+"https://www.kuaidaili.com/free/", # 快代理
+"http://www.89ip.cn/", # 89免费代理IP
+"http://www.qydaili.com/free/", #  齐云代理
+"http://proxylist.fatezero.org/proxy.list", # fatezero/proxy.list
+"http://www.ip3366.net/", # 云代理
+"http://www.data5u.com/", # 无忧代理ip
+"http://www.66ip.cn/", # 66免费代理ip
+"http://www.iphai.com/free/ng", # 免费代理 - IP海
+"https://proxy.mimvp.com/freesecret.php", # 免费代理 - 米扑代理
+"https://www.zdaye.com/FreeIPList.html", # 免费代理IP - 站大爷
+"http://www.mayidaili.com/free", # 免费代理-蚂蚁代理
+"http://www.goubanjia.com/", # 全网代理IP
+"http://www.kxdaili.com/dailiip.html", # 开心代理
+"http://www.nimadaili.com/", # 泥马ip代理
+"https://lab.crossincode.com/proxy/", # Crossin编程教室-免费IP池代理
+"http://www.xsdaili.com/dayProxy/ip/1415.html", # 小舒代理
+"http://www.xiladaili.com/", # 西拉免费代理ip
+"http://www.superfastip.com/", # 极速数据——免费IP
+"http://www.feiyiproxy.com/?page_id=1457", # 免费代理|飞蚁代理
+"http://www.shenjidaili.com/open/", # 神鸡代理

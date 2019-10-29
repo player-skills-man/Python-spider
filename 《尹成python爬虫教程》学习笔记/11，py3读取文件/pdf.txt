@@ -1,0 +1,27 @@
+版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接
+和本声明。 
+本文链接：https://blog.csdn.net/Bactryki28/article/details/52605528 
+K-最近邻算法（k-Nearest Neighbors） 
+KNN 基本思想 
+计算输入值的坐标与当前所有点的坐标距离（利用欧几里得距离），将这些距离保存在一个
+递增的列表里，获取 k 个最小的距离的值，在这些值中找到最主要的分类，即出现次数最多
+的类别，这个类别就是要预测的输入值的类别。 
+
+General approach to kNN 
+Collect: Any method. 
+Prepare: Numeric values are needed for a distance calculation. A structured dataformat is best. 
+Analyze: Any method. 
+Train: Does not apply to the kNN algorithm. 
+Test: Calculate the error rate. 
+Use: This application needs to get some input data and output structured num-eric values. 
+Next, the application runs the kNN algorithm on this input data and determines which class 
+the input data should belong to. The application then takes some action on the calculated 
+class. 
+练习举例 
+产生如下图坐标所示的数据 
+
+———————————————— 
+版权声明：本文为 CSDN 博主「思灵月」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载
+请附上原文出处链接及本声明。 
+原文链接：https://blog.csdn.net/bcqtt/article/details/52605528 
+

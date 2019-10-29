@@ -1,0 +1,40 @@
+3种内置的特殊数据格式，Spider的处理：
+XMLFeedSpider
+CSVFeedSpider
+SitemapSpider
+
+
+
+
+scrapy startproject xmlSpider
+cd xmlSpider
+
+不一样的命令！！！：
+抓取xml页面：
+scrapy genspider -t xmlfeed myspider sina.com.cn
+
+抓取csv页面：
+scrapy genspider -t csvfeed myspider iqianyue.com
+
+
+
+#源码
+# Top-level imports
+from scrapy.spiders.crawl import CrawlSpider, Rule
+from scrapy.spiders.feed import XMLFeedSpider, CSVFeedSpider
+from scrapy.spiders.sitemap import SitemapSpider
+
+
+但是scrapy genspider -l显示：
+Available templates:
+  basic
+  crawl
+  csvfeed
+  xmlfeed
+
+SitemapSpider的使用，需要自己修改，而没有模板。
+需要修改的地方：
+class ApplespiderSpider(scrapy.spiders.SitemapSpider):
+sitemap_urls = ['https://www.apple.com/sitemap.xml',]
+
+

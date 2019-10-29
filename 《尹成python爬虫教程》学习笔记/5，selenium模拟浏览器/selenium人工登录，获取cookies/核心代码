@@ -1,0 +1,6 @@
+# 核心，配置cookies
+    # 获取cookies
+    cookies = driver.get_cookies()
+    req_session = requests.session() # 建立会话
+    for cookie in cookies:
+        req_session.cookies.set(cookie['name'],cookie['value'])

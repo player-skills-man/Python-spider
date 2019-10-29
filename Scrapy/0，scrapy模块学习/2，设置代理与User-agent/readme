@@ -1,0 +1,58 @@
+只需要一行代码就搞定，利用一款名为scrapy-fake-useragent 的包！！！
+导入scrapy-fake-useragent的包后，在settings.py中间件处加入一行代码：
+'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware':400,# 开启第三方库的中间件
+
+
+0,获取请求时的header
+print(response.request.headers)
+print(response.request.headers['User-Agent'])
+
+1,settings.py文件加入代理和agents，见settings.py文件末尾
+
+2，新建/修改middlewares.py文件【此处是建立一个文件夹，收录middlewares】
+--middlewares
+    --RandomProxy.py
+    --RandomUserAgent.py
+
+3，settings.py文件中，激活中间件：middlewares
+'AgentsSpider.middlewares.RandomUserAgent.RandomUserAgent': 100, # 规定，修改Agent，序号为100
+'AgentsSpider.middlewares.RandomProxy.RandomProxy': 200, # 规定，修改代理，序号为200
+
+完成！
+
+OTTHERS,其他参数说明：
+
+1，设置默认浏览器：
+# Crawl responsibly by identifying yourself (and your website) on the user-agent
+USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1"
+
+2，是否遵守robots协议
+# Obey robots.txt rules
+ROBOTSTXT_OBEY = True
+
+3，设置延迟
+# Configure a delay for requests for the same website (default: 0)
+# See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
+# See also autothrottle settings and docs
+DOWNLOAD_DELAY = 3
+# The download delay setting will honor only one of:
+#CONCURRENT_REQUESTS_PER_DOMAIN = 16
+#CONCURRENT_REQUESTS_PER_IP = 16
+
+4，是否禁用cookies
+# Disable cookies (enabled by default)
+#COOKIES_ENABLED = False
+
+5，是否打开telnet服务器，访问方式——命令行输入：telnet 127.0.0.1:6023
+查看运行log，可以知道密码
+[scrapy.extensions.telnet] INFO: Telnet Password: ea0c9e35ad49ff84
+
+# Disable Telnet Console (enabled by default)
+#TELNETCONSOLE_ENABLED = False
+
+
+# 推荐使用
+https://mp.csdn.net/postedit/102132983
+使用 fake-useragent 包
+
+

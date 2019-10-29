@@ -1,0 +1,5 @@
+$scarpy check -h 查看命令帮助。
+
+
+contract检查：
+$scarpy check -v myspider

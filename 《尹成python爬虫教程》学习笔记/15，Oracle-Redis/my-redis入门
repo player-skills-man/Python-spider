@@ -1,0 +1,36 @@
+1，获取config配置
+    $config get *
+
+2,，修改配置
+    $config get loglevel
+    $config set loglevel "debug"
+
+3,redis支持并发，可以多个客户端同时连接。
+
+
+4，只要开启了redis-server就可以被其他计算机访问，但是这时必须要设置密码，否则其他计算机不可以获得 AUTH，会报错。
+    设置密码：
+        127.0.0.1:6379> CONFIG set requirepass "password"
+        OK
+        127.0.0.1:6379> CONFIG get requirepass
+        1) "requirepass"
+        2) "password"
+
+    远程连接服务器：
+    $redis-cli -h host -p port(6379) -a "yourPassword"
+    或者是在redis-cli中进行AUTH验证：
+    $redis-cli -h host -p port(6379)
+    $host:6319>AUTH "yourPassword"
+    这样就连接上服务器的redis了
+
+5，编码问题：
+有时候会有中文乱码。
+要在 redis-cli 后面加上 --raw
+$redis-cli --raw
+就可以避免中文乱码了。
+
+
+6,可以在redis-client执行 PING 命令，检测 redis 服务是否启动。
+正常是返回：PONG
+
+7，可以在redis-client执行 clear 命令，清理屏幕。

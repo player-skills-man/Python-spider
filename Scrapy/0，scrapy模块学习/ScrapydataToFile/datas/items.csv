@@ -1,0 +1,120 @@
+content,time,title,url
+"
+摘要：2018年11月14号更新
+
+简单的装饰了下博客，或许这样看起来会让大家看博文学习的时候没那么吃力            ",2017年10月2日,"
+[置顶]    代码发布地址/更博时间
+",https://www.cnblogs.com/Eeyhan/archive/2017/10/02.html
+"
+摘要：最近有点空余就一直在开发我的项目，最近做了两个项目：
+
+ 
+
+IPproxy，看名字就知道啦，就是一个ip代理池，爬取了各大免费的代理网站，然后检测可用性，github地址   相关的介绍github上已经说明了
+
+ 
+
+get_jobs，爬取了几十个招聘类网站的数据，github地址   同样的，相关的介绍github上已经说明了
+
+ 
+
+根据以上爬取的大概也许可能接近上百个网站吧，加上我初学爬虫的时候爬的网站，现在也算是爬了有接近上千个网站了，对爬虫也算是小有心得了，下面就开始说说吧            ",2019年9月29日,"
+    python高级—— 从趟过的坑中聊聊爬虫、反爬、反反爬，附送一套高级爬虫试题
+",https://www.cnblogs.com/Eeyhan/archive/2019/09/29.html
+"
+摘要：情况是这样的，项目用的restful规范，后端用的django+djangorestframework，前端用的vue-cli框架+webpack，前端与后端交互用的axios，然后再用户登录之后，axios添加token作为axios的header并请求后端，后端部分用的djangorestframework的认证组件。            ",2019年4月15日,"
+    djangorestframework+vue-cli+axios，为axios添加token作为headers踩坑记
+",https://www.cnblogs.com/Eeyhan/archive/2019/04/15.html
+"
+摘要：django的orm部分错集综合
+ 
+
+本篇文章我会持续更新，把开发中遇到的一切orm相关的问题都放在这里            ",2019年4月1日,"
+    django 问题综合
+",https://www.cnblogs.com/Eeyhan/archive/2019/04/01.html
+"
+摘要：前面两个终于把webpack相关配置解析完了。
+
+现在终于进入vue的开发了
+
+  
+
+vue组件化开发预热 
+ 
+
+前期准备            ",2019年3月28日,"
+    vue（9）—— 组件化开发 - webpack（3）
+",https://www.cnblogs.com/Eeyhan/archive/2019/03/28.html
+"
+摘要：webpack的常用loder和插件
+
+
+loder和插件是什么，现在暂且不表，看到后面你就懂了
+
+
+引入css问题
+
+
+直接用link标签导入css
+在前面的讲解中，相信已经对webpack有一定了解了，相比很多朋友已经跃跃欲试了，准备要搞一个自己的小            ",2019年3月26日,"
+    vue（8）—— 组件化开发 - webpack（2）
+",https://www.cnblogs.com/Eeyhan/archive/2019/03/26.html
+"
+摘要：webpack
+ 
+
+什么是webpack
+ 
+
+官方解释：webpack 是一个现代 JavaScript 应用程序的静态模块打包器(module bundler)。什么意思呢？就是可以把你开发项目时用到的所有资源全部打包成一个js文件，然后项目在上线阶段引入这个js文件就行了，它会自动帮你展出你最开始用到的资源
+
+感觉有点编译的意思对吧
+
+ 
+
+webpack作用            ",2019年3月25日,"
+    vue（7）—— 组件化开发 — webpack（1）
+",https://www.cnblogs.com/Eeyhan/archive/2019/03/25.html
+"
+摘要：异步请求
+ 
+
+其实什么是异步请求已经不用多说了，通俗的说，就是整个页面不会刷新，需要更新的部分数据做局部刷新，其他数据不变。
+
+学到这里，你应该用过jquery里的ajax了，所以很能理解了，不多说了。详细的就自己百度了
+
+
+
+在vue中，可以做异步请求的有vue-resource和axios
+
+ 
+
+后端项目准备：
+ 
+
+我用的Python作为后端语言，用的Python的django框架作为后端的web服务，且用的是django-rest-framework做成了前后端分离的项目，本文着重点不在Python后端这方面，感兴趣的可以看我的Python相关文章，这里就不涉及Python的讲解，我直接把项目代码放在这，可以直接用我的服务端项目，前提你得装了相关的开发环境（Python+django+djangorestframework）            ",2019年3月23日,"
+    vue（6）—— vue中向后端异步请求
+",https://www.cnblogs.com/Eeyhan/archive/2019/03/23.html
+"
+摘要：前端路由
+ 
+
+看到这里可能有朋友有疑惑了，前端也有路由吗？这些难道不应该是在后端部分操作的吗？确实是这样，但是现在前后端分离后，加上现在的前端框架的实用性，为的就是均衡前后端的工作量，所以在前端也有了路由，减轻了服务器对这方面的判断，在前端做好路由分发之后，后端就只需要写API接口了，更着重于数据交互，逻辑上的代码编写了
+
+ 
+
+单页面应用
+ 
+
+那么，既然有前端路由，每个路由是不是都要单写一个页面呢？不需要的，现在都提倡单页面应用            ",2019年3月22日,"
+    vue（5）—— vue的路由插件—vue-router 常用属性方法
+",https://www.cnblogs.com/Eeyhan/archive/2019/03/22.html
+"
+摘要：过滤器
+vue允许自定义过滤器，我个人认为，过滤器有两种，一种是对数据的清洗过滤，一种是对数据切换的动画过滤
+
+ 
+数据切换的动画过滤
+这里还是利用前面的动态组件的例            ",2019年3月20日,"
+    vue（4）—— vue的过滤器，监听属性，生命周期函数，获取DOM元素
+",https://www.cnblogs.com/Eeyhan/archive/2019/03/20.html

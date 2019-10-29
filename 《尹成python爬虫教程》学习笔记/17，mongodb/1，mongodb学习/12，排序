@@ -1,0 +1,7 @@
+使用 sort() 方法对数据进行排序，sort() 方法可以通过参数指定排序的字段，并使用 1 和 -1 来指定排序的方式，其中 1 为升序排列，而 -1 是用于降序排列。
+sort()方法基本语法如下所示：
+>db.COLLECTION_NAME.find().sort({KEY:1})
+
+实例：col 集合中的数据按字段 likes 的降序排列：
+>db.col.find({},{"title":1,_id:0}).sort({"likes":-1})
+

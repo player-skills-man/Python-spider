@@ -1,0 +1,7 @@
+1，延迟更新page_source
+使用driver 获取新数据时，必须sleep或等待。否则，driver.page_source可能输出的是原网页内容。
+
+time.sleep(1) # ！此处sleep不仅是为了观察，还为了足够的时间使driver.page_source的更新
+
+2，浏览器窗口大小设置
+driver.set_window_size(300,200) # ！注意，window_size遮住的按钮，是不可以实现模拟鼠标点击操作的。

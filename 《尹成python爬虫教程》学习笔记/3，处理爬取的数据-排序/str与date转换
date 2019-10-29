@@ -1,0 +1,55 @@
+---import time
+
+---获取CTS格式： 星期 月 日 时分秒 年
+    time.ctime()
+    结果：Wed May 16 15:12:57 2018
+
+---字符转换为tuple(time obj)
+    date_string = "2018-11-30 13:53:59"
+    print(time.strptime(date_string, "%Y-%m-%d %H:%M:%S"))
+    结果：time.struct_time(tm_year=2016, tm_mon=11, tm_mday=30, tm_hour=13, tm_min=53, tm_sec=59, tm_wday=2, tm_yday=335, tm_isdst=-1)
+
+---获取时间戳格式:自1970年1月1日(00:00:00 GMT)以来的秒数
+    time.time()
+    结果：1526459106.7462714
+
+---time转换为字符
+    time_tuple = (2018, 11, 30, 13, 51, 18, 2, 317, 0)
+    time.strftime("%Y-%m-%d %H:%M:%S", time_tuple)
+    结果：2016-11-30 13:51:18
+
+---time转换为时间戳
+    time_tuple = (2016, 11, 30, 13, 51, 18, 2, 317, 0)
+    time.mktime(time_tuple)
+
+---时间戳转换为时间time
+     timestamp = 1480486369.75
+
+
+
+*************************************************************************
+
+
+---datetime.now() 获取当前系统时间
+    datetime.datetime.now()
+    结果：2018-05-16 15:33:45.748534
+
+---字符转换为time
+    date_string = "2018-11-30 13:53:59"
+    datetime.datetime.strptime(date_string, "%Y-%m-%d %H:%M:%S")
+    结果：datetime.datetime(2018, 11, 30, 13, 53, 59)
+
+---datetime转换字符
+    dt_obj = datetime.datetime(2018, 11, 30, 13, 53, 59)
+    dt_obj.strftime("%Y-%m-%d %H:%M:%S")
+    结果：2018-11-30 13:53:59
+
+---datetime转换为tuple(time obj)
+　  dt_obj = datetime.datetime(2018, 11, 30, 13, 53, 59)
+　  dt_obj.timetuple()
+  　结果：time.struct_time(tm_year=2018, tm_mon=11, tm_mday=30, tm_hour=13, tm_min=53, tm_sec=59, tm_wday=2, tm_yday=335, tm_isdst=-1)
+
+---时间戳转换datetime对象
+    timestamp = 1480486369.75
+　  datetime.datetime.fromtimestamp(timestamp)
+    结果：datetime.datetime(2018, 11, 30, 14, 12, 49, 750000)

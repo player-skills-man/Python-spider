@@ -1,0 +1,49 @@
+1,从github download scrapy-redis的源码
+可以查看README.rst文档
+...
+dmoz
+This spider simply scrapes dmoz.org.
+myspider_redis
+This spider uses redis as a shared requests queue and uses myspider:start_urls as start URLs seed. For each URL, the spider outputs one item.
+mycrawler_redis
+This spider uses redis as a shared requests queue and uses mycrawler:start_urls as start URLs seed. For each URL, the spider follows are links.
+...
+
+2,打开本地redis-server,
+
+3,运行测试example-project/example/spiders/dmoz.py
+$scrapy crawl dmoz
+
+4,运行测试example-project/example/spiders/myspider_redis.py
+注意，这里的运行cmd命令不一样！
+$scrapy runspider myspider_redis.py
+会看到log》》
+INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+这里表示监听，在等待redis数据库的url队列
+$redis>lpush myspider:start_urls http://www.baidu.com/
+当压入数据，log打印信息如下》》》
+{'name': '百度一下，你就知道', 'url': 'http://www.baidu.com/', 'crawled': datetime.datetime(2019, 10, 6, 4, 51, 28, 647640), 'spider':
+'myspider_redis'}
+爬取页面后，redis中的url队列变为空：
+$redis> lrange myspider:starturls 0 -1
+(empty list or set)
+
+5,运行测试example-project/example/spiders/mycrawler_redis.py
+$scrapy runspider mycrawler_redis.py
+$redis>lpush mycrawler:start_urls http://www.baidu.com/
+会看到log》》
+DEBUG: Filtered offsite request to 'www.hao123.com': <GET http://www.hao123.com>
+DEBUG: Filtered offsite request to 'map.baidu.com': <GET http://map.baidu.com>
+...
+可以看到，抓到了很多的url
+爬取页面后，redis中的url队列变为空（当然，这里可以把新的的urls加入队列中）：
+lrange mycrawler:start_urls 1 -1
+(empty list or set)
+
+
+
+6,scrapy-redis存储的items数据类型：——list
+$redis>type batspider:items
+list
+
+

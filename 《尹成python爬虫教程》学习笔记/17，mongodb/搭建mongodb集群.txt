@@ -1,0 +1,24 @@
+1，启动三个db服务
+$mongod --dbpath C:\mongodb\data1 --port 27001 --replSet yylset
+$mongod --dbpath C:\mongodb\data2 --port 27002 --replSet yylset
+$mongod --dbpath C:\mongodb\data3 --port 27003 --replSet yylset
+
+
+
+2，进入db命令行窗口进行配随便选择一个服务器登录
+$mongo -host 127.0.0.1 -port 27001
+$use admin
+$config = {_id:"yylset",members:[ {_id:1,host:"127.0.0.1:27001"}, {_id:2,host:"127.0.0.1:27002"}, {_id:3,host:"127.0.0.1:27003"}]}
+$rs.initiate(config);
+3，输入$rs.status()查看节点信息---检查是否配置成功。
+
+4，由于mongodb默认时从主节点(PRIMARY)读取数据，而副节点(SECONDARY)不允许读,接下来要设置副节点可以读：（登录副节点的服务器）
+$yylset:SECONDARY>db.getMongo().setSlaveOk();
+
+5，测试数据同步
+输入测试数据$db.testdb.insert({"test":"just test slave"})
+查看测试数据$db.testdb.find();
+
+6，测试故障发生时，中从节点能否角色转换
+强制关闭主节点(PRIMARY)的服务器，看一下剩余的是否会有一个转化成主节点(PRIMARY)。
+ps：此时原来两个副节点的服务器log会刷屏，这是在做心跳检测，并不是什么运行错误。

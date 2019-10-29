@@ -1,0 +1,31 @@
+1，Jupyter Notebook：
+Jupyter Notebook（此前被称为 IPython notebook）是一个交互式笔记本，支持运行 40 多种编程语言。
+在本文中，我们将介绍 Jupyter notebook 的主要特性，以及为什么对于希望编写漂亮的交互式文档的人来说是一个强大工具。
+Jupyter Notebook 的本质是一个 Web 应用程序，便于创建和共享文学化程序文档，
+支持实时代码，数学方程，可视化和markdown。
+
+用途包括：数据清理和转换，数值模拟，统计建模，机器学习等等
+
+
+2，Jupyter的安装：
+    A要有python环境
+    B必须使用pip命令安装，如果使用pycharm内置的安装发现不可以正常使用。
+
+在命令行输入:$pip install jupyter
+
+3，jupyter的使用：
+中文文档：https://segmentfault.com/a/1190000013014274
+A,打开jupter服务器：
+    注意：命令行窗口所在文件夹的位置决定了服务器上文件的根路径。
+    在命令行输入$jupyter notebook
+B,使用浏览器访问服务器即可：
+    http://localhost:8888
+C，pycharm 也可以创建jupyter notebook
+    C1，（默认）在此启动新的jupyter notebook服务器
+    C2，配置连接自己的jupyter notebook服务器
+        配置所需要的链接信息可以在打开的命令行Log里找到，如下例：
+            http://localhost:8888/?token=8bea15f390613706e7fd2f64f93c499afb8d2e8dea9176a8
+    C3,然后就可以在pycharm中使用jupyternotebook，使用方式类似网页版的jupyternotebook。
+
+D，其他使用见文档：
+    中文文档：https://segmentfault.com/a/1190000013014274

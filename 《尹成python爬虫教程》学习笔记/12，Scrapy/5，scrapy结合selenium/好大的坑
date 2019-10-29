@@ -1,0 +1,24 @@
+1，[中间件的配置]中间件有两个！！！确定好你的中间件属于哪一类（在流程的什么位置运行）
+    SPIDER_MIDDLEWARES
+    DOWNLOADER_MIDDLEWARES--->selenium中间件的配置。
+并且，在settings.py文件中的配置也不能弄错，不然中间件会不工作！
+#SPIDER_MIDDLEWARES = {
+#    'seleniumScrapy.middlewares.SeleniumscrapySpiderMiddleware': 543,
+#}
+
+#DOWNLOADER_MIDDLEWARES = {
+#   'seleniumScrapy.middlewares.SeleniumscrapyDownloaderMiddleware': 543,
+#}
+
+2，返回的response是一个session(header+body)，而不仅仅是一个html页面，不可以直接写入文件。
+#TypeError: write() argument must be str, not HtmlResponse
+#TypeError: write() argument must be bytes, not HtmlResponse
+
+return HtmlResponse(url=spider.browser.current_url,
+                            body=spider.browser.page_source,
+                            encoding="utf-8",
+                            request=request)
+
+应该如此：
+        with open("data/res.html","wb") as f:
+            f.write(response.body)

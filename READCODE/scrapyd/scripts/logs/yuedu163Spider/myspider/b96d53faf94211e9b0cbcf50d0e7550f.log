@@ -1,0 +1,202 @@
+2019-10-28 13:21:04 [scrapy.utils.log] INFO: Scrapy 1.7.0 started (bot: yuedu163Spider)
+2019-10-28 13:21:04 [scrapy.utils.log] INFO: Versions: lxml 4.4.1.0, libxml2 2.9.5, cssselect 1.1.0, parsel 1.5.2, w3lib 1.21.0, Twisted 19.7.0, Python 3.7.4 (tags/v3.7.4:e09359112e, Jul  8 2019, 20:34:20) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 19.0.0 (OpenSSL 1.1.1c  28 May 2019), cryptography 2.7, Platform Windows-10-10.0.18362-SP0
+2019-10-28 13:21:04 [scrapy.crawler] INFO: Overridden settings: {'BOT_NAME': 'yuedu163Spider', 'FEED_URI': 'file:///C:/Users/admin/Desktop/yyl-docs/pycharm/Python-spider/READCODE/scrapyd/scripts/items/yuedu163Spider/myspider/b96d53faf94211e9b0cbcf50d0e7550f.jl', 'LOG_FILE': 'logs\\yuedu163Spider\\myspider\\b96d53faf94211e9b0cbcf50d0e7550f.log', 'NEWSPIDER_MODULE': 'yuedu163Spider.spiders', 'SPIDER_MODULES': ['yuedu163Spider.spiders']}
+2019-10-28 13:21:04 [scrapy.extensions.telnet] INFO: Telnet Password: d8d9792f56d31321
+2019-10-28 13:21:04 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.feedexport.FeedExporter',
+ 'scrapy.extensions.logstats.LogStats']
+2019-10-28 13:21:04 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2019-10-28 13:21:04 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2019-10-28 13:21:04 [scrapy.middleware] INFO: Enabled item pipelines:
+[]
+2019-10-28 13:21:04 [scrapy.core.engine] INFO: Spider opened
+2019-10-28 13:21:04 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2019-10-28 13:21:04 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2019-10-28 13:21:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/> (referer: None)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/3100> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2100> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2400> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/3000> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2600> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2800> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:05 [scrapy.dupefilters] DEBUG: Filtered duplicate request: <GET http://yuedu.163.com/book/category/category/3100> - no more duplicates will be shown (see DUPEFILTER_DEBUG to show all duplicates)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2700> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2500> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/source/a177475c0fb24f3f85845611b679f303_4> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://caiwei.yuedu.163.com/ycmm/category/16> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (404) <GET http://yuedu.163.com/source/e58b1b4e46bd4b998ed47d5246096b4c_4> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/source/848a5810e17f48c39c672461b7420bff_4> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2300> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://caiwei.yuedu.163.com/ycmm/category/17> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/source/f1b130ce717547ce83f88241f2e50d06_4> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2000> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/source/1d95254e8a4948f2b960580d1d3bd666_4> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://caiwei.yuedu.163.com/ycmm/category/15> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://guofeng.yuedu.163.com/yc/category/7> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2000/2003> (referer: http://yuedu.163.com/book/category/category/3100)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2000/2002> (referer: http://yuedu.163.com/book/category/category/3100)
+2019-10-28 13:21:05 [scrapy.spidermiddlewares.httperror] INFO: Ignoring response <404 http://yuedu.163.com/source/e58b1b4e46bd4b998ed47d5246096b4c_4>: HTTP status code is not handled or not allowed
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/source/8def9cabf67e436ebb7c64bee92f7ba7_4> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2000/2004> (referer: http://yuedu.163.com/book/category/category/3100)
+2019-10-28 13:21:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2000/2001> (referer: http://yuedu.163.com/book/category/category/3100)
+2019-10-28 13:21:06 [scrapy.core.scraper] DEBUG: Scraped from <200 http://yuedu.163.com/source/a177475c0fb24f3f85845611b679f303_4>
+{'bookAllClick': '社会小说',
+ 'bookAuthor': '阿耐',
+ 'bookCommentNum': '43',
+ 'bookCommentScore': '10.0',
+ 'bookId': 'a177475c0fb24f3f85845611b679f303_4',
+ 'bookImageUrl': 'https://easyreadfs.nosdn.127.net/bY8ZNptf8p0KjsUrL46HbA==/8796093024767600152',
+ 'bookLink': 'http://yuedu.163.com/source/a177475c0fb24f3f85845611b679f303_4',
+ 'bookName': '大江大河（共4册）',
+ 'bookStatus': '196.3万',
+ 'bookType': '',
+ 'bookWords': '671.3万'}
+2019-10-28 13:21:06 [scrapy.core.scraper] DEBUG: Scraped from <200 http://yuedu.163.com/source/f1b130ce717547ce83f88241f2e50d06_4>
+{'bookAllClick': '心理学',
+ 'bookAuthor': '陈立飞',
+ 'bookCommentNum': '28',
+ 'bookCommentScore': '10.0',
+ 'bookId': 'f1b130ce717547ce83f88241f2e50d06_4',
+ 'bookImageUrl': 'https://easyreadfs.nosdn.127.net/OQ6_Oqqfg4BZLOipfr5c7w==/8796093024006730994',
+ 'bookLink': 'http://yuedu.163.com/source/f1b130ce717547ce83f88241f2e50d06_4',
+ 'bookName': '个体崛起',
+ 'bookStatus': '11.0万',
+ 'bookType': '',
+ 'bookWords': '387.2万'}
+2019-10-28 13:21:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2000/2005> (referer: http://yuedu.163.com/book/category/category/3100)
+2019-10-28 13:21:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/source/a0f26176741949a9b4d18248b11958f0_4> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://caiwei.yuedu.163.com/ycmm/category/13> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://caiwei.yuedu.163.com/ycmm/category/18> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2000/2018> (referer: http://yuedu.163.com/book/category/category/3100)
+2019-10-28 13:21:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category> (referer: http://yuedu.163.com/book/category/category/3100)
+2019-10-28 13:21:06 [scrapy.core.scraper] DEBUG: Scraped from <200 http://yuedu.163.com/source/1d95254e8a4948f2b960580d1d3bd666_4>
+{'bookAllClick': '外国小说',
+ 'bookAuthor': '【美】卡勒德·胡赛尼,李继宏',
+ 'bookCommentNum': '76',
+ 'bookCommentScore': '10.0',
+ 'bookId': '1d95254e8a4948f2b960580d1d3bd666_4',
+ 'bookImageUrl': 'https://easyreadfs.nosdn.127.net/G1gEVpiizf1N4nf-h2pKDw==/8796093024769320790',
+ 'bookLink': 'http://yuedu.163.com/source/1d95254e8a4948f2b960580d1d3bd666_4',
+ 'bookName': '追风筝的人',
+ 'bookStatus': '19.1万',
+ 'bookType': '',
+ 'bookWords': '365.6万'}
+2019-10-28 13:21:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/source/dfac062f04b64cdf93cc58de8500929a_4> (referer: http://yuedu.163.com/)
+2019-10-28 13:21:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2400/2403> (referer: http://yuedu.163.com/book/category/category/3100)
+2019-10-28 13:21:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2100/2105> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2100/2104> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:07 [scrapy.core.scraper] DEBUG: Scraped from <200 http://yuedu.163.com/source/8def9cabf67e436ebb7c64bee92f7ba7_4>
+{'bookAllClick': '情绪情商',
+ 'bookAuthor': '艾米',
+ 'bookCommentNum': '19',
+ 'bookCommentScore': '10.0',
+ 'bookId': '8def9cabf67e436ebb7c64bee92f7ba7_4',
+ 'bookImageUrl': 'https://easyreadfs.nosdn.127.net/dO2gmanTxjVOoHnZfFuw7g==/8796093024382429997',
+ 'bookLink': 'http://yuedu.163.com/source/8def9cabf67e436ebb7c64bee92f7ba7_4',
+ 'bookName': '极简的力量',
+ 'bookStatus': '8.4万',
+ 'bookType': '',
+ 'bookWords': '373.2万'}
+2019-10-28 13:21:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2100/2103> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://caiwei.yuedu.163.com/source/33151a2e4d074c53b49d5a5d96201063_4> (referer: http://caiwei.yuedu.163.com/ycmm/category/17)
+2019-10-28 13:21:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2100/2102> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2100/2101> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://caiwei.yuedu.163.com/ycmm/category/17/0_0_0_0_2/p12/s30> (referer: http://caiwei.yuedu.163.com/ycmm/category/17)
+2019-10-28 13:21:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2014> (referer: http://yuedu.163.com/source/a177475c0fb24f3f85845611b679f303_4)
+2019-10-28 13:21:07 [scrapy.core.scraper] DEBUG: Scraped from <200 http://yuedu.163.com/source/a0f26176741949a9b4d18248b11958f0_4>
+{'bookAllClick': '中国经济',
+ 'bookAuthor': '吴晓波',
+ 'bookCommentNum': '72',
+ 'bookCommentScore': '10.0',
+ 'bookId': 'a0f26176741949a9b4d18248b11958f0_4',
+ 'bookImageUrl': 'https://easyreadfs.nosdn.127.net/AWOMhHFjwHuy5vBk5W0UBQ==/8796093024551589445',
+ 'bookLink': 'http://yuedu.163.com/source/a0f26176741949a9b4d18248b11958f0_4',
+ 'bookName': '激荡十年，水大鱼大：中国企业2008—2018',
+ 'bookStatus': '21.2万',
+ 'bookType': '',
+ 'bookWords': '479.7万'}
+2019-10-28 13:21:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/3000/3005> (referer: http://yuedu.163.com/book/category/category/3100)
+2019-10-28 13:21:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/3000/3004> (referer: http://yuedu.163.com/book/category/category/3100)
+2019-10-28 13:21:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://guofeng.yuedu.163.com/yc/category/7/0_0_0_0_2/p1/s30> (referer: http://guofeng.yuedu.163.com/yc/category/7)
+2019-10-28 13:21:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2310> (referer: http://yuedu.163.com/source/f1b130ce717547ce83f88241f2e50d06_4)
+2019-10-28 13:21:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2017> (referer: http://yuedu.163.com/source/1d95254e8a4948f2b960580d1d3bd666_4)
+2019-10-28 13:21:08 [scrapy.core.scraper] DEBUG: Scraped from <200 http://yuedu.163.com/source/dfac062f04b64cdf93cc58de8500929a_4>
+{'bookAllClick': '纪实文学',
+ 'bookAuthor': '王瑞恩',
+ 'bookCommentNum': '10',
+ 'bookCommentScore': '10.0',
+ 'bookId': 'dfac062f04b64cdf93cc58de8500929a_4',
+ 'bookImageUrl': 'https://easyreadfs.nosdn.127.net/XKrbD-MUYZIGTCbM9XDnzg==/8796093024065552140',
+ 'bookLink': 'http://yuedu.163.com/source/dfac062f04b64cdf93cc58de8500929a_4',
+ 'bookName': '美国怎么了',
+ 'bookStatus': '4.2万',
+ 'bookType': '',
+ 'bookWords': '265.9万'}
+2019-10-28 13:21:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2600/0_0_2> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2600/0_4_1> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://caiwei.yuedu.163.com/ycmm/category/17/0_0_0_0_2/p4/s30> (referer: http://caiwei.yuedu.163.com/ycmm/category/17)
+2019-10-28 13:21:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://caiwei.yuedu.163.com/ycmm/category/17/0_0_0_0_2/p3/s30> (referer: http://caiwei.yuedu.163.com/ycmm/category/17)
+2019-10-28 13:21:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2600/0_3_1> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2600/0_2_1> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:09 [scrapy.core.scraper] DEBUG: Scraped from <200 http://caiwei.yuedu.163.com/source/33151a2e4d074c53b49d5a5d96201063_4>
+{'bookAllClick': '3879.7万',
+ 'bookAuthor': '猫儿不偷腥',
+ 'bookCommentNum': '78',
+ 'bookCommentScore': '10.0',
+ 'bookId': '33151a2e4d074c53b49d5a5d96201063_4',
+ 'bookImageUrl': 'https://easyreadfs.nosdn.127.net/1yHudZn8M6gy6hCtkgFFLw==/8796093022381884739',
+ 'bookLink': 'http://caiwei.yuedu.163.com/source/33151a2e4d074c53b49d5a5d96201063_4',
+ 'bookName': '良田喜事：家有娇妻福满园',
+ 'bookStatus': '完结',
+ 'bookType': '种田',
+ 'bookUpdateTime': '2016-05-16 21:05',
+ 'bookWords': '57.3万'}
+2019-10-28 13:21:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2600/0_1_1> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2600/2_0_1> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/source/f37ddb26f5ff4af2a38b1c296ee5a02a_4> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://guofeng.yuedu.163.com/yc/category/7/0_0_0_3_2> (referer: http://guofeng.yuedu.163.com/yc/category/7)
+2019-10-28 13:21:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2600/0_0_1/p100/s20> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:09 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://guofeng.yuedu.163.com/yc/category/7/0_0_0_4_2> (referer: http://guofeng.yuedu.163.com/yc/category/7)
+2019-10-28 13:21:10 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2600/0_0_1/p5/s20> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:10 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://caiwei.yuedu.163.com/ycmm/category/17/0_0_0_0_2/p5/s30> (referer: http://caiwei.yuedu.163.com/ycmm/category/17)
+2019-10-28 13:21:10 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2600/0_0_1/p4/s20> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:10 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2600/0_0_1/p3/s20> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:10 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/source/54ab01f07c0e4bcdaba028e8d19fe7e6_4> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/source/476ad438a8364688a1f3bf5fdfac9e01_4> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/source/1dfde1b7f2c443a8917f712d6d7fc8ee_4> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/source/56db6d7b36bb4ba387b09ace7b1076d4_4> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/source/e2c4a2d068884c29b9771ffa6af794de_4> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:11 [scrapy.core.scraper] DEBUG: Scraped from <200 http://yuedu.163.com/source/f37ddb26f5ff4af2a38b1c296ee5a02a_4>
+{'bookAllClick': '智商智谋',
+ 'bookAuthor': '咪蒙',
+ 'bookCommentNum': '225',
+ 'bookCommentScore': '8.0',
+ 'bookId': 'f37ddb26f5ff4af2a38b1c296ee5a02a_4',
+ 'bookImageUrl': 'https://easyreadfs.nosdn.127.net/RviIsif6iFkM3nhkRFYb3Q==/8796093023913054951',
+ 'bookLink': 'http://yuedu.163.com/source/f37ddb26f5ff4af2a38b1c296ee5a02a_4',
+ 'bookName': '我喜欢这个“功利”的世界：这世界承认每一个人的努力',
+ 'bookStatus': '12.7万',
+ 'bookType': '',
+ 'bookWords': '931.8万'}
+2019-10-28 13:21:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/source/277dc0ccdb5242c8acd497bd0c768b6a_4> (referer: http://yuedu.163.com/book/category/category/2600)
+2019-10-28 13:21:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/source/3b6172a7805e4fe395e56ab97bcc2567_4> (referer: http://yuedu.163.com/book/category/category/2800)
+2019-10-28 13:21:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2800/0_0_1/p100/s20> (referer: http://yuedu.163.com/book/category/category/2800)
+2019-10-28 13:21:11 [scrapy.core.engine] DEBUG: Crawled (200) <GET http://yuedu.163.com/book/category/category/2800/0_0_1/p5/s20> (referer: http://yuedu.163.com/book/category/category/2800)

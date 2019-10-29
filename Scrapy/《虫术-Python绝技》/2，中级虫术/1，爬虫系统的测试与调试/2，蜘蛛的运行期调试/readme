@@ -1,0 +1,23 @@
+1,parse命令
+https://blog.csdn.net/xiao_yi_xiao/article/details/102148389
+Parse 命令
+检查 spider 输出的最基本的方法是使用 parse 命令。
+这能让你在函数层（method level）上检查 spider 各个部分的效果。其十分灵活并且易用，不过不能再代码中调试。
+查看特定 url 爬取到的 item：
+$ scrapy parse --spider=myspider -c parse_item -d 2 <item_url>
+
+2，在浏览中打开。
+from scrapy.utils.response import open_in_browser
+
+# 如果url中含有字符串“world”，使用浏览器打开这个url
+if "world" in response.url:
+    open_in_browser(response) # 虽然我是用notepad打开的？？？
+
+3，日志log
+from scrapy.log inport logger
+logger.info("msg")
+!注意：logger.info与print是不一样的，如果输出str，只能"str1"+"str2"+"st3"。如果使用逗号，
+其实是传入info（）的其他参数了。
+
+4，scapy shell这个很常用！！！
+此处不赘述。

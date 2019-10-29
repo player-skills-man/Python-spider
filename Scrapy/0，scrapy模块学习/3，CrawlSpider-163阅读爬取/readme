@@ -1,0 +1,11 @@
+!!!
+1，不要覆盖重写（spider.py文件）parse方法，否则CrawlSpider会失去它原有的功效。
+        你应该写一些自己的新的parse_func函数，而不是使用parse.
+
+    要避免使用parse作为回调函数，由于CrawlSpider使用parse方法来实现其逻辑，如果你再将其覆盖，CrawlSpider将失去功效。
+
+2，CrawlSpider是一匹野马，使用时一定要注意：
+    A，设计尽量精确的爬取规则，减少爬网数量
+    B，降低蜘蛛的并发频率。
+
+3，爬虫虽然强大，但是反爬虫系统无处不在。

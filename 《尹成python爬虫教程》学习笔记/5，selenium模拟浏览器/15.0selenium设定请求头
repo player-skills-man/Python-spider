@@ -1,0 +1,279 @@
+深度博文：https://blog.csdn.net/chang995196962/article/details/93712385
+
+谷歌浏览器：
+
+一、chromeOptions相关配置
+chromeOptions 是一个配置 chrome 启动是属性的类。通过这个类，我们可以为chrome配置如下参数（这个部分可以通过selenium源码看到）：
+1.设置 chrome 二进制文件位置 (binary_location)
+2.添加启动参数 (add_argument)
+3.添加扩展应用 (add_extension, add_encoded_extension)
+4.添加实验性质的设置参数 (add_experimental_option)
+5.设置调试器地址 (debugger_address)
+
+ 源码剖析:
+# .\Lib\site-packages\selenium\webdriver\chrome\options.py
+class Options(object):
+    def __init__(self):
+        self._binary_location = ''           # 设置 chrome 二进制文件位置
+        self._arguments = []                 # 添加启动参数
+        self._extension_files = []           # 添加扩展应用
+        self._extensions = []
+        self._experimental_options = {}      # 添加实验性质的设置参数
+        self._debugger_address = None        # 设置调试器地址
+1、 模拟移动设备
+# 通过设置user-agent，用来模拟移动设备
+user_ag='MQQBrowser/26 Mozilla/5.0 (Linux; U; Android 2.3.7; zh-cn; MB200 Build/GRJ22; '+
+'CyanogenMod-7) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1'
+options.add_argument('user-agent=%s'%user_ag)
+#option.add_argument('--user-agent=iphone')
+2、禁止图片加载
+from selenium import webdriver
+options = webdriver.ChromeOptions()
+prefs = {"profile.managed_default_content_settings.images": 2}
+options.add_experimental_option("prefs", prefs)
+driver = webdriver.Chrome(chrome_options=chrome_options)
+#或者  使用下面的设置, 提升速度
+options.add_argument('blink-settings=imagesEnabled=false')
+
+
+ 3、 添加代理
+from selenium import webdriver
+# 静态IP：102.23.1.105：2005
+PROXY = "proxy_host:proxy:port"
+options = webdriver.ChromeOptions()
+desired_capabilities = options.to_capabilities()
+desired_capabilities['proxy'] = {
+    "httpProxy": PROXY,
+    "ftpProxy": PROXY,
+    "sslProxy": PROXY,
+    "noProxy": None,
+    "proxyType": "MANUAL",
+    "class": "org.openqa.selenium.Proxy",
+    "autodetect": False
+}
+driver = webdriver.Chrome(desired_capabilities = desired_capabilities)
+4.浏览器启动时安装crx扩展
+# -*- coding=utf-8 -*-
+from selenium import webdriver
+option = webdriver.ChromeOptions()
+option.add_extension('d:\crx\AdBlock_v2.17.crx')  # 自己下载的crx路径
+driver = webdriver.Chrome(chrome_options=option)
+driver.get('http://www.taobao.com/')
+
+
+5.加载所有Chrome配置
+
+用Chrome地址栏输入chrome://version/，查看自己的“个人资料路径”，然后在浏览器启动时，调用这个配置文件，代码如下：
+
+#-*- coding=utf-8 -*-
+from selenium import webdriver
+option = webdriver.ChromeOptions()
+p=r'C:\Users\Administrator\AppData\Local\Google\Chrome\User Data'
+option.add_argument('--user-data-dir='+p)  # 设置成用户自己的数据目录
+driver = webdriver.Chrome(chrome_options=option)
+6.携带Cookie  通过使用Chrome选项保持所有登录在会话之间持久user-data-dir
+chrome_options = Options()
+chrome_options.add_argument("user-data-dir=selenium")
+driver = webdriver.Chrome(chrome_options=chrome_options)
+driver.get("http://www.baidu.com")
+
+7、 其他
+# -*- coding: utf-8 -*-
+from selenium import webdriver
+options = webdriver.ChromeOptions()
+
+#谷歌无头模式
+options.add_argument('--headless')
+options.add_argument('--disable-gpu')#谷歌文档提到需要加上这个属性来规避bug
+
+options.add_argument('disable-infobars')#隐藏"Chrome正在受到自动软件的控制"
+options.add_argument('lang=zh_CN.UTF-8')      # 设置中文
+options.add_argument('window-size=1920x3000') # 指定浏览器分辨率
+options.add_argument('--hide-scrollbars')     # 隐藏滚动条, 应对一些特殊页面
+options.add_argument('--remote-debugging-port=9222')
+options.binary_location = r'/Applications/Chrome' #手动指定使用的浏览器位置
+
+# 更换头部
+user_agent = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) " +
+    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36"
+    )
+options.add_argument('user-agent=%s'%user_agent)
+
+#设置图片不加载
+prefs = {
+    'profile.default_content_setting_values': {
+        'images': 2
+    }
+}
+options.add_experimental_option('prefs', prefs)
+#或者  使用下面的设置, 提升速度
+options.add_argument('blink-settings=imagesEnabled=false')
+
+
+#设置代理
+options.add_argument('proxy-server=' +'192.168.0.28:808')
+
+driver = webdriver.Chrome(chrome_options=options)
+
+#设置cookie
+driver.delete_all_cookies()# 删除所有的cookie
+driver.add_cookie({'name':'ABC','value':'DEF'})# 携带cookie打开
+driver.get_cookies()
+
+# 通过js新打开一个窗口
+driver.execute_script('window.open("https://www.baidu.com");')
+二、chrome地址栏命令
+　　about:version - 显示当前版本
+　　about:memory - 显示本机浏览器内存使用状况
+　　about:plugins - 显示已安装插件
+　　about:histograms - 显示历史记录
+　　about:dns - 显示DNS状态
+　　about:cache - 显示缓存页面
+　　about:gpu -是否有硬件加速
+　　about:flags -开启一些插件 //使用后弹出这么些东西：“请小心，这些实验可能有风险”，不知会不会搞乱俺的配置啊！
+　　chrome://extensions/ - 查看已经安装的扩展
+
+三、 chrome实用参数　
+　　–user-data-dir=”[PATH]” 指定用户文件夹User Data路径，可以把书签这样的用户数据保存在系统分区以外的分区。
+　　–disk-cache-dir=”[PATH]“ 指定缓存Cache路径
+　　–disk-cache-size= 指定Cache大小，单位Byte
+　　–first run 重置到初始状态，第一次运行
+　　–incognito 隐身模式启动
+　　–disable-javascript 禁用Javascript
+　　–omnibox-popup-count=”num” 将地址栏弹出的提示菜单数量改为num个。我都改为15个了。
+　　–user-agent=”xxxxxxxx” 修改HTTP请求头部的Agent字符串，可以通过about:version页面查看修改效果
+　　–disable-plugins 禁止加载所有插件，可以增加速度。可以通过about:plugins页面查看效果
+　　–disable-javascript 禁用JavaScript，如果觉得速度慢在加上这个
+　　–disable-java 禁用java
+　　–start-maximized 启动就最大化
+　　–no-sandbox 取消沙盒模式
+　　–single-process 单进程运行
+　　–process-per-tab 每个标签使用单独进程
+　　–process-per-site 每个站点使用单独进程
+　　–in-process-plugins 插件不启用单独进程
+　　–disable-popup-blocking 禁用弹出拦截
+　　–disable-plugins 禁用插件
+　　–disable-images 禁用图像
+　　–incognito 启动进入隐身模式
+　　–enable-udd-profiles 启用账户切换菜单
+　　–proxy-pac-url 使用pac代理 [via 1/2]
+　　–lang=zh-CN 设置语言为简体中文
+　　–disk-cache-dir 自定义缓存目录
+　　–disk-cache-size 自定义缓存最大值（单位byte）
+　　–media-cache-size 自定义多媒体缓存最大值（单位byte）
+　　–bookmark-menu 在工具 栏增加一个书签按钮
+　　–enable-sync 启用书签同步
+　　–single-process 单进程运行Google Chrome
+　　–start-maximized 启动Google Chrome就最大化
+　　–disable-java 禁止Java
+　　–no-sandbox 非沙盒模式运行
+
+selenium抓取chromedriver的network
+# -*- coding: utf-8 -*-
+from selenium import webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+d = DesiredCapabilities.CHROME
+d['loggingPrefs'] = {'performance': 'ALL'}
+driver = webdriver.Chrome( desired_capabilities=d)
+driver.get("https://www.baidu.com")
+register = driver.find_element_by_partial_link_text("登录")
+register.click()
+for entry in driver.get_log('performance'):
+    print(entry)
+参考:https://blog.csdn.net/Ambulong/article/details/52672384
+参考博文：https://blog.csdn.net/zwq912318834/article/details/78933910
+Selenium启动Chrome时配置选项 :https://blog.csdn.net/liaojianqiu0115/article/details/78353267
+Chrome命令行设置 https://peter.sh/experiments/chromium-command-line-switches/
+selenium操作chrome时的一些配置 https://blog.csdn.net/hellozhxy/article/details/80245296
+原文：https://blog.csdn.net/u013440574/article/details/81911954
+
+ selenium设置phantomjs请求头
+
+
+#-------------------------------------------------------------------------------------
+#设置phantomjs请求头和代理方法一：
+from selenium import webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+# 设置代理
+service_args = [
+    '--proxy=%s' % ip_html,       # 代理 IP：prot（eg：192.168.0.28:808）
+    '--proxy-type=http',          # 代理类型：http/https
+    '--load-images=true',         # 关闭图片加载（可选）在linux下有bug，这样设置的话会导致内存不断增加，最后挂掉
+    '--disk-cache=true',          # 开启缓存（可选）
+    '--ignore-ssl-errors=true'    # 忽略https错误（可选）
+]
+
+#设置请求头
+user_agent = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) " +
+    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36"
+    )
+dcap = dict(DesiredCapabilities.PHANTOMJS)
+dcap["phantomjs.page.settings.userAgent"] = user_agent
+driver = webdriver.PhantomJS(executable_path="phantomjs.exe",
+                             desired_capabilities=dcap,
+                             service_args=service_args)
+
+driver.get(url='http://www.baidu.com')
+
+
+
+
+#-------------------------------------------------------------------------------------
+#设置phantomjs请求头和代理方法二：
+from selenium import webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.common.proxy import ProxyType
+desired_capabilities = DesiredCapabilities.PHANTOMJS.copy()
+# 从USER_AGENTS列表中随机选一个浏览器头，伪装浏览器
+user_agent = (
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) " +
+    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.57 Safari/537.36"
+    )
+desired_capabilities["phantomjs.page.settings.userAgent"] = user_agent
+# 不载入图片，爬页面速度会快很多
+desired_capabilities["phantomjs.page.settings.loadImages"] = False
+
+# 利用DesiredCapabilities(代理设置)参数值，重新打开一个sessionId，
+# 相当于浏览器清空缓存后，加上代理重新访问一次url
+proxy = webdriver.Proxy()
+proxy.proxy_type = ProxyType.MANUAL
+proxy.http_proxy ='192.168.0.28:808'
+# 将代理设置添加到webdriver.DesiredCapabilities.PHANTOMJS中
+proxy.add_to_capabilities(desired_capabilities)
+# 打开带配置信息的phantomJS浏览器
+driver = webdriver.PhantomJS(executable_path='phantomjs.exe',
+                             desired_capabilities=desired_capabilities)
+driver.start_session(desired_capabilities)
+
+driver.get(url='http://www.baidu.com')
+
+# ==========================或者==========================
+from    selenium import  webdriver
+proxy=webdriver.Proxy()
+proxy.proxy_type=ProxyType.MANUAL
+proxy.http_proxy='192.168.0.28:808'
+# 将代理设置添加到webdriver.DesiredCapabilities.PHANTOMJS中
+proxy.add_to_capabilities(webdriver.DesiredCapabilities.PHANTOMJS)
+browser.start_session(webdriver.DesiredCapabilities.PHANTOMJS)
+browser.get('http://www.baidu.com')
+
+#-------------------------------------------------------------------------------------
+# 还原为系统代理
+proxy=webdriver.Proxy()
+proxy.proxy_type=ProxyType.DIRECT
+proxy.add_to_capabilities(webdriver.DesiredCapabilities.PHANTOMJS)
+browser.start_session(webdriver.DesiredCapabilities.PHANTOMJS)
+browser.get('http://1212.ip138.com/ic.asp')
+火狐浏览器相关设置:
+# -*- coding: utf-8 -*-
+from selenium import webdriver
+options = webdriver.FirefoxOptions()
+#火狐无头模式
+options.add_argument('--headless')
+options.add_argument('--disable-gpu')
+# options.add_argument('window-size=1200x600')
+
+driver_path = webdriver.Firefox(executable_path='geckodriver.exe',
+                                firefox_options=options)

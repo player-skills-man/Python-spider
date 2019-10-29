@@ -1,0 +1,8 @@
+https://blog.csdn.net/u011781521/article/details/70186740
+
+Selector有四个基本的方法(点击相应的方法可以看到详细的API文档):
+
+xpath(): 传入xpath表达式，返回该表达式所对应的所有节点的selector list列表 。
+css(): 传入CSS表达式，返回该表达式所对应的所有节点的selector list列表.
+extract(): 序列化该节点为unicode字符串并返回list。
+re(): 根据传入的正则表达式对数据进行提取，返回unicode字符串list列表。

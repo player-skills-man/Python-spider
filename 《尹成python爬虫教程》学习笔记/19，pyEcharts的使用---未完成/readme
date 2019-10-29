@@ -1,0 +1,38 @@
+pyecharts包含的图表
+　　Bar（柱状图/条形图）
+　　Bar3D（3D 柱状图）
+　　Boxplot（箱形图）
+　　EffectScatter（带有涟漪特效动画的散点图）
+　　Funnel（漏斗图）
+　　Gauge（仪表盘）
+　　Geo（地理坐标系）
+　　Graph（关系图）
+　　HeatMap（热力图）
+　　Kline（K线图）
+　　Line（折线/面积图）
+　　Line3D（3D 折线图）
+　　Liquid（水球图）
+　　Map（地图）
+　　Parallel（平行坐标系）
+　　Pie（饼图）
+　　Polar（极坐标系）
+　　Radar（雷达图）
+　　Sankey（桑基图）
+　　Scatter（散点图）
+　　Scatter3D（3D 散点图）
+　　ThemeRiver（主题河流图）
+　　WordCloud（词云图）
+
+　　用户自定义
+
+　　Grid 类：并行显示多张图
+　　Overlap 类：结合不同类型图表叠加画在同张图上
+　　Page 类：同一网页按顺序展示多图
+　　Timeline 类：提供时间线轮播多张图
+
+这里要专门说明一下，自从 0.3.2 开始，为了缩减项目本身的体积以及维持 pyecharts 项目的轻量化运行，
+pyecharts 将不再自带地图 js 文件。如用户需要用到地图图表（Geo、Map），可自行安装对应的地图文件包。
+
+全球国家地图: echarts-countries-pypkg (1.9MB): 世界地图和 213 个国家，包括中国地图
+中国省级地图: echarts-china-provinces-pypkg (730KB)：23 个省，5 个自治区
+中国市级地图: echarts-china-cities-pypkg (3.8MB)：370 个中国城市

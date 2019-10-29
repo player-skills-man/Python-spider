@@ -1,0 +1,33 @@
+为了从命令提示符下运行 MongoDB 服务器，你必须从 MongoDB 目录的 bin 目录中执行 mongod.exe 文件。
+C:\mongodb\bin\mongod --dbpath c:\data\db
+
+配置 MongoDB 服务
+
+创建目录，执行下面的语句来创建数据库和日志文件的目录
+mkdir c:\data\db
+mkdir c:\data\log
+创建配置文件
+创建一个配置文件。该文件必须设置 systemLog.path 参数，包括一些附加的配置选项更好。
+例如，创建一个配置文件位于 C:\mongodb\mongod.cfg，其中指定 systemLog.path 和 storage.dbPath。具体配置内容如下：
+
+systemLog:
+    destination: file
+    path: c:\data\log\mongod.log
+storage:
+    dbPath: c:\data\db
+安装 MongoDB服务
+
+通过执行mongod.exe，使用--install选项来安装服务，使用--config选项来指定之前创建的配置文件。
+C:\mongodb\bin\mongod.exe --config "C:\mongodb\mongod.cfg" --install
+要使用备用 dbpath，可以在配置文件（例如：C:\mongodb\mongod.cfg）或命令行中通过 --dbpath 选项指定。
+
+
+
+启动MongoDB服务
+net start MongoDB
+
+关闭MongoDB服务
+net stop MongoDB
+
+移除 MongoDB 服务
+C:\mongodb\bin\mongod.exe --remove

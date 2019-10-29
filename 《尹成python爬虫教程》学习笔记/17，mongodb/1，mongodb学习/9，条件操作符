@@ -1,0 +1,8 @@
+MongoDB中条件操作符有：
+(>) 大于 - $gt # greater than
+(<) 小于 - $lt # less than
+(>=) 大于等于 - $gte # greater than or equal to
+(<= ) 小于等于 - $lte
+
+如果你想获取"col"集合中 "likes" 大于100，小于 200 的数据，你可以使用以下命令：
+db.col.find({likes : {$lt :200, $gt : 100}})

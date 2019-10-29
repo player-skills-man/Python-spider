@@ -1,0 +1,30 @@
+1，scrapy shell加上UA。不然默认的scrapyUA会被一些网站屏蔽，获取不到真正的response.
+scrapy shell -s USER_AGENT="Mozilla/5.0 (Windows NT 10.0; …) Gecko/20100101 Firefox/60.0" 你需要爬取的url
+
+2，Python Scrapy导出json中文乱码问题（ scrapy crawl MKSprider -o items.json ）
+scrapy crawl MKSprider -o items.json -s FEED_EXPORT_ENCODING=utf-8
+
+3,使用Telnet
+Telnet用于查看当前爬虫的信息，操作爬虫等...使用telnet ip port ，然后通过命令操作
+#TELNETCONSOLE_ENABLED = True
+#TELNETCONSOLE_HOST = '127.0.0.1'
+#TELNETCONSOLE_PORT = [8888,9999]
+#TELNETCONSOLE_USERNAME = "yyl"
+#TELNETCONSOLE_PASSWORD = "123456"
+
+Telne相关配置参数:
+TELNETCONSOLE_PORT
+Default: [6023, 6073]
+用于telnet控制台的端口范围。如果设置为None或0，使用动态分配的端口
+
+TELNETCONSOLE_HOST
+Default: '127.0.0.1'
+telnet控制台应该侦听的ip地址。
+
+TELNETCONSOLE_USERNAME
+Default: 'scrapy'
+用于telnet控制台的用户名。
+
+TELNETCONSOLE_PASSWORD
+Default: None
+用于telnet控制台的密码，默认行为是让它自动生成，在启动日志中可见。

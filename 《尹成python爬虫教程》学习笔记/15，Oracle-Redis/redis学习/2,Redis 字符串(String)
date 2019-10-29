@@ -1,0 +1,89 @@
+https://www.runoob.com/redis/redis-strings.html
+
+1 增加
+SET key value
+设置指定 key 的值
+MSET key value [key value ...]
+同时设置一个或多个 key-value 对。
+redis 127.0.0.1:6379> MSET key1 value1 key2 value2 .. keyN valueN
+
+SETNX key value
+只有在 key 不存在时设置 key 的值。
+MSETNX key value [key value ...]
+同时设置一个或多个 key-value 对，当且仅当所有给定 key 都不存在。
+
+SETEX key seconds value
+命令为指定的 key 设置值及其过期时间。如果 key 已经存在， SETEX 命令将会替换旧的值。
+PSETEX key milliseconds value
+这个命令和 SETEX 命令相似，但它以毫秒为单位设置 key 的生存时间，而不是像 SETEX 命令那样，以秒为单位。
+redis 127.0.0.1:6379> SETEX mykey 60 redis
+OK
+
+
+
+2 查找
+GET key
+获取指定 key 的值。
+MGET key1 [key2..]
+获取所有(一个或多个)给定 key 的值。
+
+GETRANGE key start end
+返回 key 中字符串值的子字符
+redis 127.0.0.1:6379> SET mykey "This is my test key"
+OK
+redis 127.0.0.1:6379> GETRANGE mykey 0 3
+"This"
+redis 127.0.0.1:6379> GETRANGE mykey 0 -1
+"This is my test key"
+
+STRLEN KEY_NAME
+命令用于获取指定 key 所储存的字符串值的长度。当 key 储存的不是字符串值时，返回一个错误。
+字符串值的长度。 当 key 不存在时，返回 0。
+redis> STRLEN mykey
+(integer) 11
+
+
+3，修改
+GETSET key value
+将给定 key 的值设为 value ，并返回 key 的旧值(old value)。
+
+APPEND KEY_NAME NEW_VALUE
+如果 key 已经存在并且是一个字符串， APPEND 命令将 value 追加到 key 原来的值的末尾。
+如果 key 不存在， APPEND 就简单地将给定 key 设为 value ，就像执行 SET key value 一样。
+redis> APPEND myphone " - 1110"     # 长度从 5 个字符增加到 12 个字符
+(integer) 12
+注意：此处返回的是字符串的长度。
+
+SETRANGE KEY_NAME OFFSET VALUE
+Setrange 命令用指定的字符串覆盖给定 key 所储存的字符串值，覆盖的位置从偏移量 offset 开始。
+redis 127.0.0.1:6379> SET key1 "Hello World"
+OK
+redis 127.0.0.1:6379> SETRANGE key1 6 "Redis"
+(integer) 11
+redis 127.0.0.1:6379> GET key1
+"Hello Redis"
+
+INCR key
+将 key 中储存的数字值增一。
+[数据类型必须不包含数字以外的其他字符。否则报错ERR value is not an integer or out of range]
+DECR key
+将 key 中储存的数字值减一。
+redis> SET page_view 20
+OK
+redis> INCR page_view
+(integer) 21
+redis> GET page_view    # 数字值在 Redis 中以字符串的形式保存
+"21"
+
+INCRBY key increment
+将 key 所储存的值加上给定的增量值（increment） 。
+值可以加负号，来减。
+DECRBY key decrement
+key 所储存的值减去给定的减量值（decrement） 。
+INCRBYFLOAT key increment
+将 key 所储存的值加上给定的浮点增量值（increment） 。
+
+
+
+4,删除
+删除键就是del key

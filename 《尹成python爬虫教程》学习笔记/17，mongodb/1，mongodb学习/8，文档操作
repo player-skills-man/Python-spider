@@ -1,0 +1,218 @@
+文档的数据结构和 JSON 基本一样。
+所有存储在集合中的数据都是 BSON 格式。
+BSON 是一种类似 JSON 的二进制形式的存储格式，是 Binary JSON 的简称。
+
+
+[插入文档]
+MongoDB 使用 insert() 或 save() 方法向集合中插入文档，语法如下：
+db.COLLECTION_NAME.insert(document)
+实例：
+以下文档可以存储在 MongoDB 的 runoob 数据库 的 col 集合中：
+>db.col.insert({title: 'MongoDB 教程',
+    description: 'MongoDB 是一个 Nosql 数据库',
+    by: '菜鸟教程',
+    url: 'http://www.runoob.com',
+    tags: ['mongodb', 'database', 'NoSQL'],
+    likes: 100
+})
+
+我们也可以将数据定义为一个变量，然后再执行插入操作：，如下所示：
+> document=({title: 'MongoDB 教程',
+    description: 'MongoDB 是一个 Nosql 数据库',
+    by: '菜鸟教程',
+    url: 'http://www.runoob.com',
+    tags: ['mongodb', 'database', 'NoSQL'],
+    likes: 100
+});
+> db.col.insert(document)
+WriteResult({ "nInserted" : 1 })
+
+查看已插入文档：
+> db.col.find()
+
+
+
+3.2 版本后还有以下几种语法可用于插入文档:
+ db.collection.insertOne():向指定集合中插入一条文档数据
+ db.collection.insertMany():向指定集合中插入多条文档数据
+#  插入单条数据
+> var document = db.collection.insertOne({"a": 3})
+> document
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("571a218011a82a1d94c02333")
+}
+
+#  插入多条数据
+> var res = db.collection.insertMany([{"b": 3}, {'c': 4}])
+> res
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("571a22a911a82a1d94c02337"),
+                ObjectId("571a22a911a82a1d94c02338")
+        ]
+}
+
+
+
+
+[更新文档]
+MongoDB 使用 update() 和 save() 方法来更新集合中的文档。接下来让我们详细来看下两个函数的应用及其区别。
+update() 方法用于更新已存在的文档。语法格式如下：
+db.collection.update(
+   <query>,
+   <update>,
+   {
+     upsert: <boolean>,
+     multi: <boolean>,
+     writeConcern: <document>
+   }
+)
+参数说明：
+
+query : update的查询条件，类似sql update查询内where后面的。
+update : update的对象和一些更新的操作符（如$,$inc...）等，也可以理解为sql update查询内set后面的
+upsert : 可选，这个参数的意思是，如果不存在update的记录，是否插入objNew,true为插入，默认是false，不插入。
+multi : 可选，mongodb 默认是false,只更新找到的第一条记录，如果这个参数为true,就把按条件查出来多条记录全部更新。
+writeConcern :可选，抛出异常的级别。
+实例我们在集合 col 中插入如下数据：
+>db.col.insert({
+    title: 'MongoDB 教程',
+    description: 'MongoDB 是一个 Nosql 数据库',
+    by: '菜鸟教程',
+    url: 'http://www.runoob.com',
+    tags: ['mongodb', 'database', 'NoSQL'],
+    likes: 100
+})
+接着我们通过 update() 方法来更新标题(title):
+>db.col.update({'title':'MongoDB 教程'},{$set:{'title':'MongoDB'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })   # 输出信息
+> db.col.find().pretty()
+{
+        "_id" : ObjectId("56064f89ade2f21f36b03136"),
+        "title" : "MongoDB",
+        "description" : "MongoDB 是一个 Nosql 数据库",
+        "by" : "菜鸟教程",
+        "url" : "http://www.runoob.com",
+        "tags" : [
+                "mongodb",
+                "database",
+                "NoSQL"
+        ],
+        "likes" : 100
+}
+可以看到标题(title)由原来的 "MongoDB 教程" 更新为了 "MongoDB"。
+以上语句只会修改第一条发现的文档，如果你要修改多条相同的文档，则需要设置 multi 参数为 true。
+>db.col.update({'title':'MongoDB 教程'},{$set:{'title':'MongoDB'}},{multi:true})
+
+
+
+save() 方法通过传入的文档来替换已有文档。语法格式如下：
+db.collection.save(
+   <document>,
+   {
+     writeConcern: <document>
+   }
+)
+参数说明：
+document : 文档数据。
+writeConcern :可选，抛出异常的级别。
+
+以下实例中我们替换了 _id 为 56064f89ade2f21f36b03136 的文档数据：
+>db.col.save({
+    "_id" : ObjectId("56064f89ade2f21f36b03136"),
+    "title" : "MongoDB",
+    "description" : "MongoDB 是一个 Nosql 数据库",
+    "by" : "Runoob",
+    "url" : "http://www.runoob.com",
+    "tags" : [
+            "mongodb",
+            "NoSQL"
+    ],
+    "likes" : 110
+})
+
+
+
+
+[文档删除]
+
+MongoDB remove()函数是用来移除集合中的数据。
+MongoDB数据更新可以使用update()函数。在执行remove()函数前先执行find()命令来判断执行的条件是否正确，这是一个比较好的习惯。
+
+remove() 方法的基本语法格式如下所示：
+db.collection.remove(
+   <query>,
+   {
+     justOne: <boolean>,
+     writeConcern: <document>
+   }
+)
+query :（可选）删除的文档的条件。
+justOne : （可选）如果设为 true 或 1，则只删除一个文档，如果不设置该参数，或使用默认值 false，则删除所有匹配条件的文档。
+writeConcern :（可选）抛出异常的级别。
+实例：我们移除 title 为 'MongoDB 教程' 的文档：
+>db.col.remove({'title':'MongoDB 教程'})
+WriteResult({ "nRemoved" : 2 })           # 删除了两条数据
+
+
+如果你想删除所有数据，可以使用以下方式（类似常规 SQL 的 truncate 命令）：
+>db.col.remove({})
+[但其实，你可以删除整个集合，这样与删除所有文档效果一样]
+
+
+
+
+
+
+
+
+[查询文档]
+MongoDB 查询文档使用 find() 方法。
+find() 方法以非结构化的方式来显示所有文档。
+语法
+MongoDB 查询数据的语法格式如下：
+db.collection.find(query, projection)
+query ：可选，使用查询操作符指定查询条件
+projection ：可选，使用投影操作符指定返回的键。查询时返回文档中所有键值， 只需省略该参数即可（默认省略）。
+
+如果你需要以易读的方式来读取数据，可以使用 pretty() 方法，语法格式如下：
+>db.col.find().pretty()
+pretty() 方法以格式化的方式来显示所有文档。
+
+如果你熟悉常规的 SQL 数据，通过下表可以更好的理解 MongoDB 的条件语句查询：
+
+操作	格式	范例	RDBMS中的类似语句
+等于	{<key>:<value>}	db.col.find({"by":"菜鸟教程"}).pretty()	where by = '菜鸟教程'
+小于	{<key>:{$lt:<value>}}	db.col.find({"likes":{$lt:50}}).pretty()	where likes < 50
+小于或等于	{<key>:{$lte:<value>}}	db.col.find({"likes":{$lte:50}}).pretty()	where likes <= 50
+大于	{<key>:{$gt:<value>}}	db.col.find({"likes":{$gt:50}}).pretty()	where likes > 50
+大于或等于	{<key>:{$gte:<value>}}	db.col.find({"likes":{$gte:50}}).pretty()	where likes >= 50
+不等于	{<key>:{$ne:<value>}}	db.col.find({"likes":{$ne:50}}).pretty()	where likes != 50
+
+
+MongoDB AND 条件
+MongoDB 的 find() 方法可以传入多个键(key)，每个键(key)以逗号隔开，即常规 SQL 的 AND 条件。
+语法格式如下：
+>db.col.find({key1:value1, key2:value2}).pretty()
+实例:通过 by 和 title 键来查询 菜鸟教程 中 MongoDB 教程 的数据
+> db.col.find({"by":"菜鸟教程", "title":"MongoDB 教程"}).pretty()
+
+MongoDB OR 条件
+MongoDB OR 条件语句使用了关键字 $or,语法格式如下：
+>db.col.find(
+   {
+      $or: [
+         {key1: value1}, {key2:value2}
+      ]
+   }
+).pretty()
+实例:查询键 by 值为 菜鸟教程 或键 title 值为 MongoDB 教程 的文档。
+>db.col.find({$or:[{"by":"菜鸟教程"},{"title": "MongoDB 教程"}]}).pretty()
+
+AND 和 OR 联合使用
+类似常规 SQL 语句为： 'where likes>50 AND (by = '菜鸟教程' OR title = 'MongoDB 教程')'
+>db.col.find({"likes": {$gt:50}, $or: [{"by": "菜鸟教程"},{"title": "MongoDB 教程"}]}).pretty()
+
+
