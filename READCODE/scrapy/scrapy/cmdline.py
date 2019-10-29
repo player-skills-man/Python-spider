@@ -1,3 +1,5 @@
+# encoding=utf-8
+# YYL-READCODE-1
 from __future__ import print_function
 import sys
 import os
@@ -105,24 +107,32 @@ def _run_print_help(parser, func, *a, **kw):
             parser.print_help()
         sys.exit(2)
 
-
+# scrapy的入口是scrapy/cmdline.py的execute方法
 def execute(argv=None, settings=None):
     if argv is None:
         argv = sys.argv
 
+    # 初始化环境、获取项目配置参数，返回settings对象
     if settings is None:
+        # <scrapy.settings.Settings object...>
         settings = get_project_settings()
-        # set EDITOR from environment if available
+
+        # set EDITOR from environment if available, 权限不允许，下面这段代码try--except--else等于没有
         try:
             editor = os.environ['EDITOR']
         except KeyError:
             pass
         else:
             settings['EDITOR'] = editor
+
+    # 校验弃用的配置项
     check_deprecated_settings(settings)
 
+    # 执行环境是否在项目中，主要检查scrapy.cfg配置文件是否存在
     inproject = inside_project()
+    # 读取commands文件夹，把所有的命令类转换为{cmd_name: cmd_instance}的字典
     cmds = _get_commands_dict(settings, inproject)
+    # 从命令行解析出执行的是哪个命令
     cmdname = _pop_command_name(argv)
     parser = optparse.OptionParser(formatter=optparse.TitledHelpFormatter(), \
                                    conflict_handler='resolve')
