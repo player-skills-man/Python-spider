@@ -1,7 +1,7 @@
 # Tests requirements
 brotlipy
 jmespath
-mitmproxy==0.10.1
+mitmproxy==4.0.4
 mock
 netlib==0.10.1
 pytest
