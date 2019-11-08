@@ -143,16 +143,22 @@ def execute(argv=None, settings=None):
         _print_unknown_command(settings, cmdname, inproject)
         sys.exit(2)
 
+    # 根据命令名称找到对应的命令实例
     cmd = cmds[cmdname]
     parser.usage = "scrapy %s %s" % (cmdname, cmd.syntax())
     parser.description = cmd.long_desc()
+    # 设置项目配置和级别为command
     settings.setdict(cmd.default_settings, priority='command')
     cmd.settings = settings
+    # 添加解析规则
     cmd.add_options(parser)
+    # 解析命令参数，并交由Scrapy命令实例处理
     opts, args = parser.parse_args(args=argv[1:])
     _run_print_help(parser, cmd.process_options, args, opts)
 
+    # 初始化CrawlerProcess实例，并给命令实例添加crawler_process属性
     cmd.crawler_process = CrawlerProcess(settings)
+    # 执行命令实例的run方法
     _run_print_help(parser, _run_command, cmd, args, opts)
     sys.exit(cmd.exitcode)
 
