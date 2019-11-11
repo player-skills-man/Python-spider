@@ -23,7 +23,7 @@ print(type(result))
 
 
 # 通过读取文件
-html = etree.parse('index.html',etree.HTMLParser())
+html = etree.parse('chpwd.html',etree.HTMLParser())
 result = etree.tostring(html, pretty_print=True)# 修复HTML代码，补全其他选项。返回result是bytes类型
 # print(result)
 # print(type(result))

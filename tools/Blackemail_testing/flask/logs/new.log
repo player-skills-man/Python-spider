@@ -1,0 +1,6 @@
+2019-11-11 17:30:17,346 - INFO:  * Restarting with stat
+2019-11-11 17:30:18,112 - WARNING:  * Debugger is active!
+2019-11-11 17:30:18,112 - INFO:  * Debugger PIN: 249-246-618
+2019-11-11 17:30:18,127 - INFO:  * Running on http://0.0.0.0:8080/ (Press CTRL+C to quit)
+2019-11-11 17:30:22,088 - ERROR: Ocean_yyl@163.com
+2019-11-11 17:30:22,090 - INFO: 127.0.0.1 - - [11/Nov/2019 17:30:22] "GET /login_email?email=Ocean_yyl%40163.com HTTP/1.1" 302 -
