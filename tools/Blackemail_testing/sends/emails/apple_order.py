@@ -4,9 +4,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
 from email.utils import parseaddr, formataddr
 import smtplib
-import time
-import os
-
+import logging
 
 def _format_addr(s):
     name, addr = parseaddr(s)
@@ -27,7 +25,7 @@ def send_email(from_addr, password, to_addr, txt_head, txt_msg):
     msgRoot.attach(msg_text)
 
     #msg img
-    img_file = '../txt_msg/imgs/apple.png'
+    img_file = './txt_msg/imgs/apple.png'
     img_id = 1
     fp = open(img_file, 'rb')
     msgImage = MIMEImage(fp.read())
@@ -39,7 +37,7 @@ def send_email(from_addr, password, to_addr, txt_head, txt_msg):
     server = smtplib.SMTP(smtp_server, 25)
     server.login(from_addr, password)
     server.sendmail(from_addr, [to_addr], msgRoot.as_string())
-    print(to_addr, ":seng ok.")
+    logging.info("["+to_addr+"].send ok:"+txt_head)
     server.quit()
 
 
@@ -56,22 +54,16 @@ def send_msg(to_email='', txt_head='', txt_msg=''):
     send_email(from_addr, password, to_addr, txt_head, txt_msg)
 
 
-def send_emails(e_file, txt_head="", htm_file=""):
-    with open(e_file, encoding="utf-8") as e_f:
-        elist = e_f.readlines()
+def send_emails(txt_head="", htm_file="",e_addr=""):
     txt_head = txt_head
     with open(htm_file, encoding="utf-8") as f:
         txt_msg = f.read()
 
     baseurl = "http://39.96.166.6/login/"
-    for e_addr in elist:
-        # url = "http://127.0.0.1/login/"+e_addr
-        url = baseurl + e_addr
-        e_addr = e_addr.strip()
-        txt_msg_new = txt_msg.replace("Ocean_yyl@163.com", e_addr)  # 更换邮箱
-        txt_msg_new = txt_msg_new.replace("http://www.baidu.com", url)  # 更换url地址
+    # url = "http://127.0.0.1/login/"+e_addr
+    url = baseurl + e_addr
+    e_addr = e_addr.strip()
+    txt_msg_new = txt_msg.replace("Ocean_yyl@163.com", e_addr)  # 更换邮箱
+    txt_msg_new = txt_msg_new.replace("http://www.baidu.com", url)  # 更换url地址
 
-        send_msg(to_email=e_addr, txt_head=txt_head, txt_msg=txt_msg_new)
-
-if __name__ == '__main__':
-    send_emails(e_file="../e-list", txt_head='Apple 确认订单', htm_file="../txt_msg/apple_order.html")
+    send_msg(to_email=e_addr, txt_head=txt_head, txt_msg=txt_msg_new)
