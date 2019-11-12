@@ -1,6 +1,6 @@
 import random
-from sends.emails.base0 import send_email
-from sends.emails.apple_order import send_emails
+from emails.base0 import send_email
+from emails.apple_order import send_emails
 import logging
 logging.basicConfig(level= logging.DEBUG,#控制台打印的日志级别
                     filename='./logs/send_email.log',
