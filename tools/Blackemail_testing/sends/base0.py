@@ -38,7 +38,7 @@ def send_msg(to_email='',txt_head = '',txt_msg = ''):
 	send_email(from_addr, password, to_addr, txt_head, txt_msg)
 
 
-def send_emails(e_file,txt_head="",htm_file="",url="http://39.96.166.6/login/"):
+def send_emails(e_file,txt_head="",htm_file="",baseurl="http://39.96.166.6/login/"):
 	with open(e_file,encoding="utf-8") as e_f:
 		elist = e_f.readlines()
 	txt_head = txt_head
@@ -46,7 +46,7 @@ def send_emails(e_file,txt_head="",htm_file="",url="http://39.96.166.6/login/"):
 		txt_msg = f.read()
 
 	for e_addr in elist:
-		url = url+e_addr
+		url = baseurl+e_addr
 		e_addr = e_addr.strip()
 		txt_msg_new = txt_msg.replace("Ocean_yyl@163.com",e_addr) # 更换邮箱
 		txt_msg_new = txt_msg_new.replace("http://www.baidu.com",url) # 更换url地址
