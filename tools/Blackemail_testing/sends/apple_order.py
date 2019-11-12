@@ -19,7 +19,7 @@ def send_email(from_addr, password, to_addr, txt_head, txt_msg):
     smtp_server = 'smtp.163.com'
     msgRoot = MIMEMultipart('related')
     msgRoot['Subject'] = Header(txt_head, 'utf-8').encode()
-    msgRoot['From'] = _format_addr(u'管理员<%s>' % from_addr)  # 设置发送人姓名
+    msgRoot['From'] = _format_addr(u'Apple<%s>' % from_addr)  # 设置发送人姓名
     msgRoot['To'] = _format_addr(to_addr)
 
     # msg text
@@ -63,8 +63,9 @@ def send_emails(e_file, txt_head="", htm_file=""):
     with open(htm_file, encoding="utf-8") as f:
         txt_msg = f.read()
 
-    url = "https://www.csdn.net/"
+
     for e_addr in elist:
+        url = "http://127.0.0.1/login/"+e_addr
         e_addr = e_addr.strip()
         txt_msg_new = txt_msg.replace("Ocean_yyl@163.com", e_addr)  # 更换邮箱
         txt_msg_new = txt_msg_new.replace("http://www.baidu.com", url)  # 更换url地址
@@ -72,4 +73,4 @@ def send_emails(e_file, txt_head="", htm_file=""):
         send_msg(to_email=e_addr, txt_head=txt_head, txt_msg=txt_msg_new)
 
 if __name__ == '__main__':
-    send_emails(e_file="../e-list", txt_head='图片发送测试', htm_file="../txt_msg/apple_order.html")
+    send_emails(e_file="../e-list", txt_head='Apple 确认订单', htm_file="../txt_msg/apple_order.html")
