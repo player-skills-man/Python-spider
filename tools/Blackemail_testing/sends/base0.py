@@ -38,7 +38,7 @@ def send_msg(to_email='',txt_head = '',txt_msg = ''):
 	send_email(from_addr, password, to_addr, txt_head, txt_msg)
 
 
-def send_emails(e_file,txt_head="",htm_file="",url="http://127.0.0.1/login/"):
+def send_emails(e_file,txt_head="",htm_file="",url="http://39.96.166.6/login/"):
 	with open(e_file,encoding="utf-8") as e_f:
 		elist = e_f.readlines()
 	txt_head = txt_head

