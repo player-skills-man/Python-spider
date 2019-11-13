@@ -27,11 +27,11 @@ def send(from_addr, password, to_addr, txt_head, txt_msg):
 	logging.info("["+to_addr+"].send ok:"+txt_head)
 	server.quit()
 
-def send_msg(to_email='',txt_head = '',txt_msg = ''):
+def send_msg(from_addr = 'to_Ocean_yyl@163.com',password = 'yyl123456789',to_email='',txt_head = '',txt_msg = ''):
 	# 发件人地址
-	from_addr = 'to_Ocean_yyl@163.com'
+	from_addr = from_addr
 	# 邮箱密码
-	password = 'yyl123456789'
+	password = password
 	# 收件人地址
 	to_addr =to_email
 	# 设置邮件信息
@@ -40,7 +40,7 @@ def send_msg(to_email='',txt_head = '',txt_msg = ''):
 	send(from_addr, password, to_addr, txt_head, txt_msg)
 
 
-def send_email(txt_head="", htm_file="", baseurl="http://39.96.166.6/login/", e_addr=""):
+def send_email(from_addr = 'to_Ocean_yyl@163.com',password = 'yyl123456789',txt_head="", htm_file="", baseurl="http://39.96.166.6/login/", e_addr=""):
 	txt_head = txt_head
 	with open(htm_file,encoding="utf-8") as f:
 		txt_msg = f.read()
@@ -51,4 +51,4 @@ def send_email(txt_head="", htm_file="", baseurl="http://39.96.166.6/login/", e_
 	txt_msg_new = txt_msg_new.replace("http://www.baidu.com",url) # 更换url地址
 	txt_msg_new = txt_msg_new.replace("2019-11-08 13:16", str(time.ctime())) # other_login
 
-	send_msg(to_email=e_addr,txt_head=txt_head,txt_msg=txt_msg_new)
+	send_msg(from_addr,password,to_email=e_addr,txt_head=txt_head,txt_msg=txt_msg_new)

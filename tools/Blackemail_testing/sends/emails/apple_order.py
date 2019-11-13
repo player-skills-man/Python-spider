@@ -41,11 +41,11 @@ def send_email(from_addr, password, to_addr, txt_head, txt_msg):
     server.quit()
 
 
-def send_msg(to_email='', txt_head='', txt_msg=''):
+def send_msg(from_addr = 'to_Ocean_yyl@163.com',password = 'yyl123456789',to_email='', txt_head='', txt_msg=''):
     # 发件人地址
-    from_addr = 'to_Ocean_yyl@163.com'
+    from_addr = from_addr
     # 邮箱密码
-    password = 'yyl123456789'
+    password = password
     # 收件人地址
     to_addr = to_email
     # 设置邮件信息
@@ -54,7 +54,7 @@ def send_msg(to_email='', txt_head='', txt_msg=''):
     send_email(from_addr, password, to_addr, txt_head, txt_msg)
 
 
-def send_emails(txt_head="", htm_file="",e_addr=""):
+def send_emails(from_addr = 'to_Ocean_yyl@163.com',password = 'yyl123456789',txt_head="", htm_file="",e_addr=""):
     txt_head = txt_head
     with open(htm_file, encoding="utf-8") as f:
         txt_msg = f.read()
@@ -66,4 +66,4 @@ def send_emails(txt_head="", htm_file="",e_addr=""):
     txt_msg_new = txt_msg.replace("Ocean_yyl@163.com", e_addr)  # 更换邮箱
     txt_msg_new = txt_msg_new.replace("http://www.baidu.com", url)  # 更换url地址
 
-    send_msg(to_email=e_addr, txt_head=txt_head, txt_msg=txt_msg_new)
+    send_msg(from_addr,password,to_email=e_addr, txt_head=txt_head, txt_msg=txt_msg_new)
