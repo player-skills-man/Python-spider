@@ -72,9 +72,9 @@ def closest_scrapy_cfg(path='.', prevpath=None):
     """
     if path == prevpath:
         return ''
-    path = os.path.abspath(path)
-    cfgfile = os.path.join(path, 'scrapy.cfg')
-    if os.path.exists(cfgfile):
+    path = os.path.abspath(path) # 获取项目路径
+    cfgfile = os.path.join(path, 'scrapy.cfg') # myspider的配置文件路径
+    if os.path.exists(cfgfile): # 检测文件确实存在
         return cfgfile
     return closest_scrapy_cfg(os.path.dirname(path), path)
 
@@ -98,7 +98,15 @@ def get_config(use_closest=True):
     """Get Scrapy config file as a ConfigParser"""
     sources = get_sources(use_closest)
     cfg = ConfigParser()
-    cfg.read(sources)
+    cfg.read(sources) # 加载配置文件
+    """
+    sources <class 'list'>: 
+    ['/etc/scrapy.cfg', 
+    'c:\\scrapy\\scrapy.cfg', 
+    'C:\\Users\\admin/.config/scrapy.cfg', 
+    'C:\\Users\\admin/.scrapy.cfg', 
+    'C:\\Users\\admin\\Desktop\\yyl-docs\\pycharm\\Python-spider\\READCODE\\YYL_test\\scrapyTest\\scrapy.cfg']
+    """
     return cfg
 
 
