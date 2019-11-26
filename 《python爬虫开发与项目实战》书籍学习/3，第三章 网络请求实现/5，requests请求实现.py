@@ -13,7 +13,7 @@ print(r.url)
 '''
 # 实现一个完整的请求与响应模型:POST
 postdata={'key':'value'}
-r = requests.post('http://www.xxxxxx.com/login',data=postdata)
+r = requests.post('http://www.xxxxxx.com/login',params=postdata)
 print(r.content)
 '''
 
