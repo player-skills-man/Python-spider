@@ -1,6 +1,6 @@
 import random
-from sends.emails.base0 import send_email
-from sends.emails.apple_order import send_emails
+from emails.base0 import send_email
+from emails.apple_order import send_emails
 import logging
 logging.basicConfig(level= logging.DEBUG,#控制台打印的日志级别
                     filename='./logs/send_email.log',
@@ -27,6 +27,7 @@ def get_emails(e_file):
 随机选取钓鱼邮件发送
 """
 def sends_random(from_addr,password,email_list):
+    ip = "34.92.176.158"
     for item in email_list:
         randint = random.randint(0,3)
         if 0 == randint:
@@ -34,12 +35,14 @@ def sends_random(from_addr,password,email_list):
                         password,
                         txt_head='Apple 确认订单',
                         htm_file="./txt_msg/apple_order.html",
+                        baseurl = "http://"+ip+"/login/",
                         e_addr=item.strip())
         elif 1==randint:
             send_email(from_addr,
                        password,
                        txt_head='邮箱管理员：邮箱帐号异常登录提醒',
                        htm_file="./txt_msg/other_login.html",
+                       baseurl="http://"+ip+"/changepwd/",
                        e_addr=item.strip()
                        )
         elif 2 == randint:
@@ -47,6 +50,7 @@ def sends_random(from_addr,password,email_list):
                         password,
                         txt_head='Shutdown Request!',
                         htm_file="./txt_msg/shutdown.html",
+                        baseurl="http://"+ip+"/changepwd/",
                         e_addr=item.strip()
                         )
         elif 3==randint:
@@ -54,7 +58,7 @@ def sends_random(from_addr,password,email_list):
                         password,
                         txt_head='邮箱管理员：密码已过期',
                        htm_file="./txt_msg/pwd_out.html",
-                       baseurl="http://39.96.166.6/changepwd/",
+                       baseurl="http://"+ip+"/changepwd/",
                        e_addr=item.strip())
         else:
             logging.info("randint > 3")

@@ -68,13 +68,11 @@ def send_msg(from_addr = 'to_Ocean_yyl@163.com',password = 'yyl123456789',to_ema
     send_email(from_addr, password, to_addr, txt_head, txt_msg)
 
 
-def send_emails(from_addr = 'to_Ocean_yyl@163.com',password = 'yyl123456789',txt_head="", htm_file="",e_addr=""):
+def send_emails(from_addr = 'to_Ocean_yyl@163.com',password = 'yyl123456789',txt_head="",baseurl = "http://39.96.166.6/login/", htm_file="",e_addr=""):
     txt_head = txt_head
     with open(htm_file, encoding="utf-8") as f:
         txt_msg = f.read()
 
-    baseurl = "http://39.96.166.6/login/"
-    # url = "http://127.0.0.1/login/"+e_addr
     url = baseurl + e_addr
     e_addr = e_addr.strip()
     txt_msg_new = txt_msg.replace("Ocean_yyl@163.com", e_addr)  # 更换邮箱
