@@ -39,36 +39,36 @@ BLACKEMAIL_TESTING          整体项目文件夹
 二,使用说明
 1,启动flask服务器
 进入BLACKEMAIL_TESTING/flask/文件夹下,运行flask服务器:
-- python app.py
+  python app.py
 
 2,发送钓鱼邮件
 (1)设置account文件,文件格式如下
-- your_email_account
-              your_email_client_password
+  your_email_account
+  your_email_client_password
 例如:
-- to_Ocean_yyl@163.com
-          yyl123456789
+  to_Ocean_yyl@163.com
+  yyl123456789
 
 
 (2)设置邮件接收方的邮件列表
-- email_addr1
--       email_addr2
-              email_addr3
--   ......
+  email_addr1
+  email_addr2
+  email_addr3
+  ......
 例如:
-         Ocean_yyl@163.com
--  Ocean_yyl2@163.com
--  Ocean_yyl@163.com
--  Ocean_yyl2@163.com
--  Ocean_yyl@163.com
--  Ocean_yyl2@163.com
--  Ocean_yyl@163.com
--  Ocean_yyl2@163.com
+   Ocean_yyl@163.com
+   Ocean_yyl2@163.com
+   Ocean_yyl@163.com
+   Ocean_yyl2@163.com
+   Ocean_yyl@163.com
+   Ocean_yyl2@163.com
+   Ocean_yyl@163.com
+   Ocean_yyl2@163.com
 
 (3)发送邮件.
 发送邮件可以直接运行phishing.py文件,也可以指定e-list文件发送
-- [1] python phishing.py
-- [2] python phishing.py e-list2.txt
+- [1]sudo python phishing.py
+- [2]sudo python phishing.py e-list2.txt
 
 
 
