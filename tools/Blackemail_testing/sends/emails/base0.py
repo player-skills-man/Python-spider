@@ -12,16 +12,31 @@ def _format_addr(s):
 
 # 发送邮件函数
 def send(from_addr, password, to_addr, txt_head, txt_msg):
-	# 163网易邮箱服务器地址
-	smtp_server = 'smtp.163.com'
+	server = ""
+	if ("@163." in from_addr):
+		# 163网易邮箱服务器地址
+		smtp_server = 'smtp.163.com'
+		server = smtplib.SMTP(smtp_server, 25)
+	elif("@gmail" in from_addr):
+		# google邮箱服务器地址
+		smtp_server = 'smtp.gmail.com'
+		server = smtplib.SMTP(smtp_server, 587)
+
+	if server == "":
+		print("发送方邮箱格式不正确")
+		exit(-1)
+
+
 
 	msg = MIMEText(txt_msg, 'html', 'utf-8')
 	msg['Subject'] = Header(txt_head, 'utf-8').encode()
 	msg['From'] = _format_addr(u'管理员<%s>'%from_addr) # 设置发送人姓名
 	msg['To'] = _format_addr(to_addr)
 
+
 	#发送邮件
-	server = smtplib.SMTP(smtp_server, 25)
+	server.ehlo()
+	server.starttls()
 	server.login(from_addr, password)
 	server.sendmail(from_addr, [to_addr], msg.as_string())
 	logging.info("["+to_addr+"].send ok:"+txt_head)

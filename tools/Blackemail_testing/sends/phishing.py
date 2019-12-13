@@ -1,6 +1,6 @@
 import random
-from emails.base0 import send_email
-from emails.apple_order import send_emails
+from sends.emails.base0 import send_email
+from sends.emails.apple_order import send_emails
 import logging
 logging.basicConfig(level= logging.DEBUG,#控制台打印的日志级别
                     filename='./logs/send_email.log',
@@ -27,7 +27,6 @@ def get_emails(e_file):
 随机选取钓鱼邮件发送
 """
 def sends_random(from_addr,password,email_list):
-
     for item in email_list:
         randint = random.randint(0,3)
         if 0 == randint:
