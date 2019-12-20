@@ -1,0 +1,4 @@
+r = requests.get(url=url,
+                     proxies={
+                         "http": "http://ada65d3d0eb043e08adda39ec23ea979:@proxy.crawlera.com:8010/",
+                     })

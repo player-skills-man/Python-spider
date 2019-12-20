@@ -1,0 +1,15 @@
+参考：https://www.jianshu.com/p/2a5403234b14
+ts 文件一般怎么处理?  
+1 只有m3u8文件，需要下载ts文件
+2 有ts文件，但因为被加密无法播放，需要解码
+3 ts文件能正常播放，但太多而小，需要合并
+
+
+
+代码使用：
+修改main.py文件中的三个参数，运行main.py下载即可
+
+# m3u8_url文件地址
+m3u8_url = 'https://jdvodrvfb210d.vod.126.net/mooc-video/nos/hls/2018/04/28/1009218006_cff89340b62041e396ec9a91a9974a81_sd.m3u8'
+# 要保存的文件名
+video_name = "video_list/h2.ts"
