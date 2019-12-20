@@ -36,7 +36,7 @@ app.url_map.converters['email'] = MobelConverter
 def changpwd(email):
     session['email'] = email
     logging.error("url->changepwd:["+request.remote_addr+"]"+email)
-    return render_template("./chpwd.html",new_email=email)
+    return render_template("./chpwd.html", new_email=email)
 
 @app.route("/changepwd_email",methods=['post','get'])
 def changpwd_email():
