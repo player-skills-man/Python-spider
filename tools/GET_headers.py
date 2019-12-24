@@ -1,4 +1,5 @@
 import random
+from fake_useragent import UserAgent
 
 # 返回一个随机的请求头 headers
 def getheaders():
@@ -38,7 +39,7 @@ def getheaders():
         # UC浏览器
         "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122 UBrowser/4.0.3214.0 Safari/537.36",
     ]
-    #各种移动端
+    # 各种移动端
     user_agent_list_3 = [
         # IPhone
         "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_3 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8J2 Safari/6533.18.5",
@@ -93,7 +94,15 @@ def getheaders():
         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24",
         "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 (KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24"
     ]
-    user_agent_list = user_agent_list_1+user_agent_list_2+user_agent_list_3
+
+    user_agent_list = user_agent_list_1 + user_agent_list_2 + user_agent_list_3
     UserAgent = random.choice(user_agent_list)
     headers = {'User-Agent': UserAgent}
     return headers
+
+
+if __name__ == '__main__':
+    print(getheaders())
+
+    # ua = UserAgent()
+    # print(ua.random)
