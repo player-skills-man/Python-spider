@@ -1,13 +1,10 @@
 # -*- coding: utf-8 -*-
 import unittest
 
-import six
-from six.moves.urllib.parse import urlparse
-
 from scrapy.spiders import Spider
 from scrapy.utils.url import (url_is_from_any_domain, url_is_from_spider,
-                              add_http_if_no_scheme, guess_scheme,
-                              parse_url, strip_url)
+                              add_http_if_no_scheme, guess_scheme, strip_url)
+
 
 __doctests__ = ['scrapy.utils.url']
 
@@ -187,6 +184,7 @@ class AddHttpIfNoScheme(unittest.TestCase):
 class GuessSchemeTest(unittest.TestCase):
     pass
 
+
 def create_guess_scheme_t(args):
     def do_expected(self):
         url = guess_scheme(args[0])
@@ -194,6 +192,7 @@ def create_guess_scheme_t(args):
             'Wrong scheme guessed: for `%s` got `%s`, expected `%s...`' % (
                 args[0], url, args[1])
     return do_expected
+
 
 def create_skipped_scheme_t(args):
     def do_expected(self):
@@ -204,24 +203,24 @@ def create_skipped_scheme_t(args):
 
 for k, args in enumerate ([
             ('/index',                              'file://'),
-            ('/chpwd.html',                         'file://'),
-            ('./chpwd.html',                        'file://'),
-            ('../chpwd.html',                       'file://'),
-            ('../../chpwd.html',                    'file://'),
-            ('./data/chpwd.html',                   'file://'),
-            ('.hidden/data/chpwd.html',             'file://'),
-            ('/home/user/www/chpwd.html',           'file://'),
-            ('//home/user/www/chpwd.html',          'file://'),
-            ('file:///home/user/www/chpwd.html',    'file://'),
+            ('/index.html',                         'file://'),
+            ('./index.html',                        'file://'),
+            ('../index.html',                       'file://'),
+            ('../../index.html',                    'file://'),
+            ('./data/index.html',                   'file://'),
+            ('.hidden/data/index.html',             'file://'),
+            ('/home/user/www/index.html',           'file://'),
+            ('//home/user/www/index.html',          'file://'),
+            ('file:///home/user/www/index.html',    'file://'),
 
-            ('chpwd.html',                          'http://'),
+            ('index.html',                          'http://'),
             ('example.com',                         'http://'),
             ('www.example.com',                     'http://'),
-            ('www.example.com/chpwd.html',          'http://'),
+            ('www.example.com/index.html',          'http://'),
             ('http://example.com',                  'http://'),
             ('http://example.com/index.html',       'http://'),
             ('localhost',                           'http://'),
-            ('localhost/chpwd.html',                'http://'),
+            ('localhost/index.html',                'http://'),
 
             # some corner cases (default to http://)
             ('/',                                   'http://'),
