@@ -60,8 +60,19 @@ def data_path(path, createdir=False):
 
 def get_project_settings():
     if ENVVAR not in os.environ:
-        project = os.environ.get('SCRAPY_PROJECT', 'default')
-        init_env(project)
+        project = os.environ.get('SCRAPY_PROJECT', 'default') # os.environ 返回有关系统的各种信息
+        # 系统没有SCRAPY_PROJECT键值,project = default.
+        # print(project) # default
+        init_env(project) # 环境path中加入用户自己编写的爬虫项目project-dir，以便scrapy命令可以找到这个模块
+        # print(project) # default
+        """
+        init_env:
+        Initialize environment to use command-line tool from inside a project
+            dir. This sets the Scrapy settings module and modifies the Python path to
+            be able to locate the project module.
+        """
+        print(os.environ)
+
 
     settings = Settings()
     settings_module_path = os.environ.get(ENVVAR)

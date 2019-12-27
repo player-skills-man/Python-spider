@@ -104,13 +104,13 @@ def _run_print_help(parser, func, *a, **kw):
             parser.print_help()
         sys.exit(2)
 
-
+# YYL->0 scrapy的入口
 def execute(argv=None, settings=None):
     if argv is None:
-        argv = sys.argv
+        argv = sys.argv # sys.argv 此文件所在位置
 
     if settings is None:
-        settings = get_project_settings()
+        settings = get_project_settings() # YYL->1 读取配置文件settings.py,初始化环境、获取项目配置参数，返回settings对象
         # set EDITOR from environment if available
         try:
             editor = os.environ['EDITOR']
@@ -118,7 +118,7 @@ def execute(argv=None, settings=None):
             pass
         else:
             settings['EDITOR'] = editor
-    check_deprecated_settings(settings)
+    check_deprecated_settings(settings) # 校验弃用的配置项
 
     inproject = inside_project()
     cmds = _get_commands_dict(settings, inproject)

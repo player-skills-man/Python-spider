@@ -80,26 +80,54 @@ def init_env(project='default', set_syspath=True):
     be able to locate the project module.
     """
     cfg = get_config()
+    # print(cfg)  # <ConfigParser object>
     if cfg.has_option('settings', project):
-        os.environ['SCRAPY_SETTINGS_MODULE'] = cfg.get('settings', project)
+        # print(os.environ.get('SCRAPY_SETTINGS_MODULE')) # None
+        # print(project) # default
+        os.environ['SCRAPY_SETTINGS_MODULE'] = cfg.get('settings',
+                                                       project)  # 将.cfg文件中的[settings] default = scrapyTest.settings加载
+    # print(os.environ.get('SCRAPY_SETTINGS_MODULE')) # scrapyTest.settings
     closest = closest_scrapy_cfg()
+    # print(closest) # ../Python-spider/READCODE/scrapyTest/scrapy.cfg
+    """
+    closest_scrapy_cfg:
+    Return the path to the closest scrapy.cfg file by traversing the current
+    directory and its parents
+    """
     if closest:
         projdir = os.path.dirname(closest)
+        # print(projdir) # ../Python-spider/READCODE/scrapyTest
         if set_syspath and projdir not in sys.path:
             sys.path.append(projdir)
-
+            # os.path.append  对于模块和自己写的程序不在同一个目录下，可以把模块的路径通过sys.path.append(路径)添加到程序中
+            # 此处是将用户自己写的scrapy项目加到path中。
 
 def get_config(use_closest=True):
     """Get Scrapy config file as a ConfigParser"""
     sources = get_sources(use_closest)
+    # print(sources) # 各处的.cfg文件，windows系统，linux系统，项目中...
+    # ['/etc/scrapy.cfg', 'c:\\scrapy\\scrapy.cfg', '/Users/yyl/.config/scrapy.cfg', '/Users/yyl/.scrapy.cfg', '/Users/yyl/PycharmProjects/Python-spider/READCODE/scrapyTest/scrapy.cfg']
     cfg = ConfigParser()
     cfg.read(sources)
+    """
+    read:
+    Read and parse a filename or an iterable of filenames.
+
+            Files that cannot be opened are silently ignored; this is
+            designed so that you can specify an iterable of potential
+            configuration file locations (e.g. current directory, user's
+            home directory, systemwide directory), and all existing
+            configuration files in the iterable will be read.  A single
+            filename may also be given.
+
+            Return list of successfully read files.
+    """
     return cfg
 
 
 def get_sources(use_closest=True):
     xdg_config_home = os.environ.get('XDG_CONFIG_HOME') or \
-        os.path.expanduser('~/.config')
+                      os.path.expanduser('~/.config')
     sources = ['/etc/scrapy.cfg', r'c:\scrapy\scrapy.cfg',
                xdg_config_home + '/scrapy.cfg',
                os.path.expanduser('~/.scrapy.cfg')]
