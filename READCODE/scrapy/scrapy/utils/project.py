@@ -15,6 +15,7 @@ DATADIR_CFG_SECTION = 'datadir'
 
 
 def inside_project():
+    # 检查此环境变量是否存在(上面已设置)
     scrapy_module = os.environ.get('SCRAPY_SETTINGS_MODULE')
     if scrapy_module is not None:
         try:
@@ -23,6 +24,12 @@ def inside_project():
             warnings.warn("Cannot import scrapy settings module %s: %s" % (scrapy_module, exc))
         else:
             return True
+
+    # 如果环境变量没有，就近查找scrapy.cfg，找得到就认为是在项目环境中
+    """
+    scrapy命令有的是依赖项目运行的，有的命令则是全局的，不依赖项目的。
+    这里主要通过就近查找scrapy.cfg文件来确定是否在项目环境中。
+    """
     return bool(closest_scrapy_cfg())
 
 
@@ -59,10 +66,13 @@ def data_path(path, createdir=False):
 
 
 def get_project_settings():
+    # 环境变量中是否有SCRAPY_SETTINGS_MODULE配置
     if ENVVAR not in os.environ:
         project = os.environ.get('SCRAPY_PROJECT', 'default') # os.environ 返回有关系统的各种信息
         # 系统没有SCRAPY_PROJECT键值,project = default.
         # print(project) # default
+
+        # 初始化环境,找到用户配置文件settings.py,设置到环境变量SCRAPY_SETTINGS_MODULE中
         init_env(project) # 环境path中加入用户自己编写的爬虫项目project-dir，以便scrapy命令可以找到这个模块
         # print(project) # default
         """
@@ -71,13 +81,25 @@ def get_project_settings():
             dir. This sets the Scrapy settings module and modifies the Python path to
             be able to locate the project module.
         """
-        print(os.environ)
+        # print(os.environ)
 
-
+    # 加载默认配置文件default_settings.py，生成settings实例
+    """
+    默认配置文件default_settings.py是非常重要的，个人认为还是有必要看一下里面的内容，
+    这里包含了所有默认的配置，例如调度器类、爬虫中间件类、下载器中间件类、下载处理器类等等.
+    
+    在这里就能隐约发现，scrapy的架构是非常低耦合的，所有组件都是可替换的，什么是可替换呢？
+    例如，你觉得默认的调度器功能不够用，那么你就可以按照它定义的接口标准，自己实现一个调度器，
+    然后在自己的配置文件中，注册自己写的调度器模块，那么scrapy的运行时就会用上你新写的调度器模块了！
+    ---只要在默认配置文件中配置的模块，都是可替换的---
+    """
     settings = Settings()
+    # 取得用户配置文件
     settings_module_path = os.environ.get(ENVVAR)
+    # 更新配置，用户配置覆盖默认配置
     if settings_module_path:
         settings.setmodule(settings_module_path, priority='project')
+        # 如果环境变量中有其他scrapy相关配置则覆盖
 
     # XXX: remove this hack
     pickled_settings = os.environ.get("SCRAPY_PICKLED_SETTINGS_TO_OVERRIDE")

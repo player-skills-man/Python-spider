@@ -440,10 +440,13 @@ class Settings(BaseSettings):
         # Do not pass kwarg values here. We don't want to promote user-defined
         # dicts, and we want to update, not replace, default dicts with the
         # values given by the user
+        # 调用父类构造初始化
         super(Settings, self).__init__()
+        # 把default_settings.py的所有配置set到settings实例中
         self.setmodule(default_settings, 'default')
         # Promote default dictionaries to BaseSettings instances for per-key
         # priorities
+        # 把attributes属性也set到settings实例中
         for name, val in self.items():
             if isinstance(val, dict):
                 self.set(name, BaseSettings(val, 'default'), 'default')

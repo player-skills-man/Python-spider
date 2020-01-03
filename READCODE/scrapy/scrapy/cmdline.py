@@ -110,8 +110,10 @@ def execute(argv=None, settings=None):
         argv = sys.argv # sys.argv 此文件所在位置
 
     if settings is None:
+        # 研究配置的详细代码构造
         settings = get_project_settings() # YYL->1 读取配置文件settings.py,初始化环境、获取项目配置参数，返回settings对象
         # set EDITOR from environment if available
+        print(settings.items())
         try:
             editor = os.environ['EDITOR']
         except KeyError:
@@ -120,6 +122,7 @@ def execute(argv=None, settings=None):
             settings['EDITOR'] = editor
     check_deprecated_settings(settings) # 校验弃用的配置项
 
+    # 检查此环境变量是否存在(上面已设置)
     inproject = inside_project()
     cmds = _get_commands_dict(settings, inproject)
     cmdname = _pop_command_name(argv)
