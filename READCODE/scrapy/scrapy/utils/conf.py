@@ -97,6 +97,7 @@ def init_env(project='default', set_syspath=True):
     if closest:
         projdir = os.path.dirname(closest)
         # print(projdir) # ../Python-spider/READCODE/scrapyTest
+        # set_syspath 确实加入到PATH中
         if set_syspath and projdir not in sys.path:
             sys.path.append(projdir)
             # os.path.append  对于模块和自己写的程序不在同一个目录下，可以把模块的路径通过sys.path.append(路径)添加到程序中

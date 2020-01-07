@@ -16,6 +16,7 @@ from scrapy.settings.deprecated import check_deprecated_settings
 
 
 def _iter_command_classes(module_name):
+    # 迭代这个包下的所有模块，找到ScrapyCommand的子类
     # TODO: add `name` attribute to commands and and merge this function with
     # scrapy.utils.spider.iter_spider_classes
     for module in walk_modules(module_name):
@@ -29,8 +30,10 @@ def _iter_command_classes(module_name):
 
 def _get_commands_from_module(module, inproject):
     d = {}
+    # 找到这个模块下所有的命令类(ScrapyCommand子类)
     for cmd in _iter_command_classes(module):
         if inproject or not cmd.requires_project:
+            # 生成{cmd_name: cmd}字典
             cmdname = cmd.__module__.split('.')[-1]
             d[cmdname] = cmd()
     return d
@@ -48,8 +51,10 @@ def _get_commands_from_entry_points(inproject, group='scrapy.commands'):
 
 
 def _get_commands_dict(settings, inproject):
+    # 导入commands文件夹下的所有模块，生成{cmd_name: cmd}的字典集合
     cmds = _get_commands_from_module('scrapy.commands', inproject)
     cmds.update(_get_commands_from_entry_points(inproject))
+    # 如果用户自定义配置文件中有COMMANDS_MODULE配置，则加载自定义的命令类
     cmds_module = settings['COMMANDS_MODULE']
     if cmds_module:
         cmds.update(_get_commands_from_module(cmds_module, inproject))
@@ -113,7 +118,6 @@ def execute(argv=None, settings=None):
         # 研究配置的详细代码构造
         settings = get_project_settings() # YYL->1 读取配置文件settings.py,初始化环境、获取项目配置参数，返回settings对象
         # set EDITOR from environment if available
-        print(settings.items())
         try:
             editor = os.environ['EDITOR']
         except KeyError:
@@ -122,8 +126,11 @@ def execute(argv=None, settings=None):
             settings['EDITOR'] = editor
     check_deprecated_settings(settings) # 校验弃用的配置项
 
-    # 检查此环境变量是否存在(上面已设置)
+
+    # 检查环境是否在项目中
+    # scrapy命令有的是依赖项目运行的，有的命令则是全局的，不依赖项目的。这里主要通过就近查找scrapy.cfg文件来确定是否在项目环境中。
     inproject = inside_project()
+    # 获取可用命令并组装成名称与实例的字典
     cmds = _get_commands_dict(settings, inproject)
     cmdname = _pop_command_name(argv)
     parser = optparse.OptionParser(formatter=optparse.TitledHelpFormatter(),
@@ -144,6 +151,8 @@ def execute(argv=None, settings=None):
     opts, args = parser.parse_args(args=argv[1:])
     _run_print_help(parser, cmd.process_options, args, opts)
 
+    # 最后初始化CrawlerProcess实例，然后运行对应命令实例的run方法。
+    # 如果运行命令是scrapy crawl <spider_name>，则运行的就是commands/crawl.py的run：
     cmd.crawler_process = CrawlerProcess(settings)
     _run_print_help(parser, _run_command, cmd, args, opts)
     sys.exit(cmd.exitcode)

@@ -67,6 +67,8 @@ def data_path(path, createdir=False):
 
 def get_project_settings():
     # 环境变量中是否有SCRAPY_SETTINGS_MODULE配置
+    # print(os.environ)
+    # print("SCRAPY_SETTINGS_MODULE in the environ? ",os.environ.get(ENVVAR))
     if ENVVAR not in os.environ:
         project = os.environ.get('SCRAPY_PROJECT', 'default') # os.environ 返回有关系统的各种信息
         # 系统没有SCRAPY_PROJECT键值,project = default.
