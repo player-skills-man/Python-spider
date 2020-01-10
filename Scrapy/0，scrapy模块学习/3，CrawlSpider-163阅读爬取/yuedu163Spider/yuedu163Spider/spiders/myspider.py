@@ -25,7 +25,14 @@ class MyspiderSpider(CrawlSpider):
     # 回调函数处理提取到的链接，follow=True表示一直循环下去
     rules = [r1,r2]
     # 注意:此处要想循环起来，必须修改原来的parse函数函数名,不然循环失败。
-
+    """
+    《官方文档》
+    https://docs.scrapy.org/en/latest/topics/spiders.html
+    Warning！
+    When writing crawl spider rules, avoid using parse as callback, 
+    since the CrawlSpider uses the parse method itself to implement its logic. 
+    So if you override the parse method, the crawl spider will no longer work.
+    """
 
 
     def parse_book(self, response):

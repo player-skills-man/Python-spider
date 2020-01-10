@@ -1,0 +1,53 @@
+>>>l = ItemLoader(Product(), some_selector)
+>>>l.add_xpath('name', xpath1) # (1)
+>>>l.add_xpath('name', xpath2) # (2)
+>>>l.add_css('name', css) # (3)
+>>>l.add_value('name', 'test') # (4)
+>>>return l.load_item() # (5)
+
+If you want to use a plain function as a processor,
+make sure it receives self as the first argument:
+>>>def lowercase_processor(self, values):
+>>>    for v in values:
+>>>        yield v.lower()
+>>>
+>>>class MyItemLoader(ItemLoader):
+>>>    name_in = lowercase_processor
+
+
+[Declaring Input and Output Processors]
+>>import scrapy
+>>from scrapy.loader.processors import Join, MapCompose, TakeFirst
+>>from w3lib.html import remove_tags
+>>>
+>>>def filter_price(value):
+>>>    if value.isdigit():
+>>>        return value
+>>>
+>>>class Product(scrapy.Item):
+>>>    name = scrapy.Field(
+>>>        input_processor=MapCompose(remove_tags),
+>>>        output_processor=Join(),
+>>>    )
+>>>    price = scrapy.Field(
+>>>        input_processor=MapCompose(remove_tags, filter_price),
+>>>        output_processor=TakeFirst(),
+>>>    )
+
+>>> from scrapy.loader import ItemLoader
+>>> il = ItemLoader(item=Product())
+>>> il.add_value('name', [u'Welcome to my', u'<strong>website</strong>'])
+>>> il.add_value('price', [u'&euro;', u'<span>1000</span>'])
+>>> il.load_item()
+{'name': u'Welcome to my website', 'price': u'1000'}
+
+
+The precedence order, for both input and output processors, is as follows:
+    1,Item Loader field-specific attributes:
+      field_in and field_out (most precedence)
+    2,Field metadata (input_processor and output_processor key)
+    3,Item Loader defaults: ItemLoader.default_input_processor()
+      and ItemLoader.default_output_processor() (least precedence)
+
+
+[Item Loader Context]
