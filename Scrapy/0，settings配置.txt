@@ -168,4 +168,15 @@ ITEM_PIPELINES = {
 # 缓存存储的插件
 # HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
+
+LOG_ENABLED = True #是否启动日志记录，默认True
+LOG_ENCODING = 'UTF-8'
+LOG_FILE = 'TEST1.LOG'#日志输出文件，如果为NONE，就打印到控制台
+LOG_LEVEL = 'INFO'#日志级别，默认debug
+LOG_FORMAT #日志格式
+LOG_DATEFORMAT#日志日期格式
+LOG_STDOUT #日志标准输出，默认False，如果True所有标准输出都将写入日志中，比如代码中的print输出也会被写入到文件
+LOG_SHORT_NAMES#短日志名，默认为false，如果为True将不输出组件名
+
+
 settings.py
