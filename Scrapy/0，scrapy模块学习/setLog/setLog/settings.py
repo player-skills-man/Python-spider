@@ -9,14 +9,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-import datetime
-
-date = datetime.datetime.now()
-
-LOG_ENABLED = True  # 是否启动日志记录
-LOG_ENCODING = 'UTF-8'
-LOG_FILE = '{}_{}_{}.log'.format(date.year, date.month, date.day)  # 日志输出文件
-LOG_LEVEL = 'INFO'  # 日志级别，默认debug
+# import datetime
+#
+# date = datetime.datetime.now()
+#
+# LOG_ENABLED = True  # 是否启动日志记录
+# LOG_ENCODING = 'UTF-8'
+# LOG_FILE = '{}_{}_{}.log'.format(date.year, date.month, date.day)  # 日志输出文件
+# LOG_LEVEL = 'INFO'  # 日志级别，默认debug
 
 BOT_NAME = 'setLog'
 
