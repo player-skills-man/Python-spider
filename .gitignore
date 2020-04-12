@@ -1,3 +1,5 @@
 .idea/
 *.log
 __pycache__/
+/API/client.py
+/my_api.py
