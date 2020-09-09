@@ -1,6 +1,0 @@
-1，翻页:使用scrapy.Request对象，使用callback回调方法，实现翻页
-2，pipline:使用Item pipline实现数据指定配置，输出到文件（数据库等）
-3，设置telnet用户名和密码——
-默认用户名和密码可以被设置覆盖 TELNETCONSOLE_USERNAME 和 TELNETCONSOLE_PASSWORD .
-
-4,scrapyd + scrapyd-client + scrapyd-api的测试使用

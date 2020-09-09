@@ -1,5 +1,0 @@
-scrapy.spiders.Spider
-    scrapy.spiders.CrawlSpider
-    scrapy.spiders.XMLFeedSpider
-    scrapy.spiders.CSVFeedSpider
-    scrapy.spiders.SitemapSpider

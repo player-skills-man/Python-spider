@@ -1,6 +1,0 @@
-item = your_Item()
-
-item['book_name'] = response.xpath('your_xpath').get() # 书名
-item['author'] = response.xpath('your_xpath').get() # 作者
-item['price'] = response.xpath('your_xpath').get() # 价格
-item['isbn'] = response.xpath('your_xpath').get() # isbn

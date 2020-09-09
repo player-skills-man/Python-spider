@@ -18,6 +18,8 @@ def get_access_token():
 
 def get_scores(sentence):
 	access_token = get_access_token()
+	print("access_token",access_token)
+	print("-"*20)
 	# 默认gbk编码，若是要utf-8,需要加上说明:url?charset=UTF-8&access_token=
 	url = "https://aip.baidubce.com/rpc/2.0/nlp/v2/dnnlm_cn?access_token={}".format(access_token)
 	body = {
